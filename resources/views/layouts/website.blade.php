@@ -95,7 +95,7 @@
             </div> --}}
         <div class="top_bar">
 
-            <div class="logo" width="75">
+            <div class="logo" style="max-width: 75px !important;">
                 <a href="/">
                     <span class="fw-bold">তারুণ্যের চোখে আমরা...</span><br>
                     <img src="{{ asset('website/img/logo/logo-transparent.png') }}" alt=""></a>
@@ -134,7 +134,7 @@
         <nav class="navbar navbar-expand-lg navbar-light p-0">
             <div class="container-fluid menu-area">
                 <!-- Brand -->
-                <div class="logo" width="75">
+                <div class="logo" style="max-width: 75px !important;">
                     <a href="/">
                         <img src="{{ asset('website/img/logo/logo-transparent.png') }}" alt="">
                     </a>
@@ -563,7 +563,7 @@
 
     <div class="topbar wrapper">
 
-        <div class="logo" width="100">
+        <div class="logo" style="max-width: 75px !important;">
             <a href="/">
                 <span class="fw-bold">তারুণ্যের চোখে আমরা...</span><br>
                 <img src="{{ asset('website/img/logo/logo-transparent.png') }}" alt="">
