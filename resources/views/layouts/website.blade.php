@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {{-- Default meta --}}
-    <title>@yield('meta_title', 'The Message Today – Latest Breaking News & Headlines') </title>
+    <title>@yield('meta_title', 'Metro News – Latest Breaking News & Headlines') </title>
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('meta_og_title', 'The Message Today– Latest Breaking News & Headlines')">
+    <meta name="twitter:title" content="@yield('meta_og_title', 'Metro News– Latest Breaking News & Headlines')">
     <meta name="twitter:description"
         content="Get the latest breaking news, sports updates, politics, and trending stories on Favourite Range News.">
     <meta name="twitter:image" content="@yield('meta_twitter_image', asset('website/img/logo/logo.jpeg'))">
@@ -17,14 +17,14 @@
     <link rel="canonical" href="{{ url()->current() }}">
     {{-- Default meta --}}
 
-    <meta name="description" content="@yield('meta_description', 'Get the latest breaking news, sports updates, politics, and trending stories on The Message Today. Stay informed with real-time headlines.')">
-    <meta property="og:title" content="@yield('meta_og_title', 'The Message Today– Latest Breaking News & Headlines')">
-    <meta property="og:description" content="@yield('meta_og_description', 'Get the latest breaking news, sports updates, politics, and trending stories on The Message Today.')">
+    <meta name="description" content="@yield('meta_description', 'Get the latest breaking news, sports updates, politics, and trending stories on Metro News. Stay informed with real-time headlines.')">
+    <meta property="og:title" content="@yield('meta_og_title', 'Metro News– Latest Breaking News & Headlines')">
+    <meta property="og:description" content="@yield('meta_og_description', 'Get the latest breaking news, sports updates, politics, and trending stories on Metro News.')">
     <meta property="og:image" content="@yield('meta_og_image', asset('website/img/logo/logo.jpeg'))">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('meta_twitter_title', 'The Message Today– Latest Breaking News & Headlines')">
-    <meta name="twitter:description" content="@yield('meta_twitter_description', 'Get the latest breaking news, sports updates, politics, and trending stories on The Message Today.')">
+    <meta name="twitter:title" content="@yield('meta_twitter_title', 'Metro News– Latest Breaking News & Headlines')">
+    <meta name="twitter:description" content="@yield('meta_twitter_description', 'Get the latest breaking news, sports updates, politics, and trending stories on Metro News.')">
     <meta name="twitter:image" content="@yield('meta_twitter_image', asset('website/img/logo/logo.jpeg'))">
     <link rel="canonical" href="@yield('meta_canonical', url()->current())">
 
@@ -575,12 +575,12 @@
                 {{-- <h6>সোশ্যাল মিডিয়া</h6> --}}
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" target="_blank"
-                            href="https://www.facebook.com/profile.php?id=61580902890070"> <i
+                            href="https://www.facebook.com/metronewsbangla"> <i
                                 class="fa-brands fa-facebook"></i>
                         </a></li>
-                    <li class="nav-item"><a target="_blank"  class="nav-link" href="https://www.instagram.com/todaythemessage/"> <i class="fa-brands fa-instagram"></i>
+                    <li class="nav-item"><a target="_blank"  class="nav-link" href="#"> <i class="fa-brands fa-instagram"></i>
                         </a></li>
-                    <li class="nav-item"><a target="_blank" class="nav-link" href="https://www.youtube.com/@themessage2day"> <i class="fa-brands fa-youtube"></i>
+                    <li class="nav-item"><a target="_blank" class="nav-link" href="#"> <i class="fa-brands fa-youtube"></i>
                         </a></li>
                     <li class="nav-item"><a target="_blank" class="nav-link" href="#"> <i class="fa-brands fa-twitter"></i>
                         </a></li>
@@ -639,8 +639,8 @@
             <div class="row g-3 justify-content-between w-100 align-items-center">
                 <div class="col-sm-7">
                     <p class="small text-muted">
-                        <span>Editor (in charge): Sristy Talukdar<br>© 2025 All Rights Reserved |
-                            TheMessage2Day.com</span><br>
+                        <span>Editor (in charge): Mizanur Rahman<br>© 2025 All Rights Reserved |
+                            MetroNews.info</span><br>
                         <svg class="footer-icon" aria-hidden="true" focusable="false" data-prefix="fas"
                             data-icon="map-marker-alt" role="img" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 384 512">
@@ -658,7 +658,7 @@
                                     d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z">
                                 </path>
                             </svg>
-                        </abbr> +88 01835-117590,
+                        </abbr> +880 1318-553300,
 
                         <span class="small">
                             <abbr title="Email:">
@@ -669,7 +669,7 @@
                                         d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z">
                                     </path>
                                 </svg>
-                            </abbr> themessage2daynews@gmail.com<br>
+                            </abbr> metronewsinfo@gmail.com<br>
                         </span>
                     </p>
                 </div>

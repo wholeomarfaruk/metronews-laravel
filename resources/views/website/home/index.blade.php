@@ -357,7 +357,7 @@
                                 <p class="fw-bold  col-5" style="font-size: 18px;">Follow Us</p>
                                 <div class=" col-7 d-flex justify-content-center gap-3 align-items-center">
                                     <!-- Facebook -->
-                                    <a href="https://www.facebook.com/profile.php?id=61580902890070" target="_blank"
+                                    <a href="https://www.facebook.com/metronewsbangla" target="_blank"
                                         class="btn-hover-effect-1 social-icon facebook">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48"
                                             height="48" viewBox="0 0 48 48">
@@ -370,7 +370,7 @@
                                         </svg>
                                     </a>
                                     <!-- YouTube -->
-                                    <a href="https://www.youtube.com/@themessage2day" target="_blank"
+                                    <a href="#" target="_blank"
                                         class="btn-hover-effect-1 social-icon youtube">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48"
                                             height="48" viewBox="0 0 48 48">
