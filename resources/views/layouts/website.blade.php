@@ -98,7 +98,7 @@
             <div class="logo" style="max-width: 75px !important;">
                 <a href="/">
                     <span class="fw-bold">তারুণ্যের চোখে আমরা...</span><br>
-                    <img src="{{ asset('website/img/logo/logo-transparent.png') }}" alt=""></a>
+                    <img style="max-width: 75px !important;" src="{{ asset('website/img/logo/logo-transparent.png') }}" alt=""></a>
 
             </div>
             <div class="tools">
@@ -136,7 +136,7 @@
                 <!-- Brand -->
                 <div class="logo" style="max-width: 75px !important;">
                     <a href="/">
-                        <img src="{{ asset('website/img/logo/logo-transparent.png') }}" alt="">
+                        <img style="max-width: 75px !important;" src="{{ asset('website/img/logo/logo-transparent.png') }}" alt="">
                     </a>
                 </div>
                 <div class="e-paper">
@@ -563,10 +563,10 @@
 
     <div class="topbar wrapper">
 
-        <div class="logo" style="max-width: 75px !important;">
+        <div class="logo" style="max-width: 100px !important;">
             <a href="/">
                 <span class="fw-bold">তারুণ্যের চোখে আমরা...</span><br>
-                <img src="{{ asset('website/img/logo/logo-transparent.png') }}" alt="">
+                <img style="max-width: 100px !important;" src="{{ asset('website/img/logo/logo-transparent.png') }}" alt="">
             </a>
         </div>
 
