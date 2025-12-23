@@ -15,7 +15,7 @@ class UsersSeeder extends Seeder
     {
         User::factory()->create([
             'name' => 'Super Admin',
-            'email' => 'superadmin@themessage2day.com',
+            'email' => 'superadmin@metronews.info',
             'password' => bcrypt('password'), // Ensure to set a default password
         ]);
         $user = User::find(1);
