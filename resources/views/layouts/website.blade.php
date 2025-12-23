@@ -565,7 +565,7 @@
 
         <div class="logo">
             <a href="/">
-                <span class="fw-bold">তারুণ্যের চোখে আমরা...</span><br>
+                <span class="fw-bold">Fast.Fresh. Metro News</span><br>
                 <img style="max-width: 100px !important;" src="{{ asset('website/img/logo/logo-transparent.png') }}" alt="">
             </a>
         </div>
