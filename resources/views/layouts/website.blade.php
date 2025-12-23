@@ -97,7 +97,7 @@
 
             <div class="logo" >
                 <a href="/">
-                    <span class="fw-bold">তারুণ্যের চোখে আমরা...</span><br>
+                    <span class="fw-bold">Fast.Fresh.Metro News</span><br>
                     <img style="max-width: 75px !important;" src="{{ asset('website/img/logo/logo-transparent.png') }}" alt=""></a>
 
             </div>
@@ -602,7 +602,7 @@
 
     </div>
     <div class="text_area wrapper">
-        <p>Message Today is the Digital news media outlet in Bangladesh.across online and multimedia sectors. We are
+        <p>Metro News is the Digital news media outlet in Bangladesh.across online and multimedia sectors. We are
             committed to publishing the real news
         </p>
     </div>
@@ -648,7 +648,7 @@
                                 d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z">
                             </path>
                         </svg>
-                        178/1 West Shewrapara, Mirpur, Dhaka-1216
+                        Mirpur, Dhaka-1216
                         <br>
                         <abbr title="Phone:">
                             <svg class="footer-icon" aria-hidden="true" focusable="false" data-prefix="fas"
