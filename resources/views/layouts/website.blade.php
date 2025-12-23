@@ -95,7 +95,7 @@
             </div> --}}
         <div class="top_bar">
 
-            <div class="logo" style="max-width: 75px !important;">
+            <div class="logo" >
                 <a href="/">
                     <span class="fw-bold">তারুণ্যের চোখে আমরা...</span><br>
                     <img style="max-width: 75px !important;" src="{{ asset('website/img/logo/logo-transparent.png') }}" alt=""></a>
@@ -563,7 +563,7 @@
 
     <div class="topbar wrapper">
 
-        <div class="logo" style="max-width: 100px !important;">
+        <div class="logo">
             <a href="/">
                 <span class="fw-bold">তারুণ্যের চোখে আমরা...</span><br>
                 <img style="max-width: 100px !important;" src="{{ asset('website/img/logo/logo-transparent.png') }}" alt="">
