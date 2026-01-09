@@ -41,6 +41,14 @@ public function getFeaturedImageAttribute()
 
     return asset('website/img/thumbnails/featured_img.jpg');
 }
+public function getPostUrlAttribute()
+{
+    $cat= ($this->category?->slug == null ? 'uncategorized' : $this->category->slug=='') ? 'uncategorized' : $this->category->slug;
+    if($this->slug == null || $this->slug == '' && $cat == 'uncategorized' || $cat == ''){
+        return "#";
+    }
+    return route('post.show', ['category' => $this->category->slug,'slug' => $this->slug]);
+}
 
 
 
