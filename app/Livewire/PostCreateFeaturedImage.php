@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-use Livewire\WithFileUploads;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class PostCreateFeaturedImage extends Component
 {
