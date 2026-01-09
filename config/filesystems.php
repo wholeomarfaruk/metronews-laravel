@@ -32,7 +32,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => public_path('uploads'),
+            'root' => storage_path('app'),
             'serve' => true,
             'throw' => false,
             'report' => false,
@@ -41,7 +41,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => public_path(),
-            'url' => env('APP_URL') . '/uploads',
+            'url' =>    env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
@@ -61,8 +61,8 @@ return [
         ],
         'uploads' => [
             'driver' => 'local',
-            'root' => public_path('uploads'),
-            'url' => env('APP_URL') . '/uploads',
+            'root' => storage_path('app/public/uploads'),
+            'url' => env('APP_URL') . '/storage/uploads',
             'visibility' => 'public',
         ],
 
