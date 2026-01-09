@@ -43,8 +43,8 @@ public function getFeaturedImageAttribute()
 }
 public function getPostUrlAttribute()
 {
-    $cat= ($this->category?->slug == null ? 'uncategorized' : $this->category->slug=='') ? 'uncategorized' : $this->category->slug;
-    if($this->slug == null || $this->slug == '' && $cat == 'uncategorized' || $cat == ''){
+    $cat= $this?->category?->slug=='' ? null : $this?->category?->slug;
+    if($this->slug == null || $this->slug == '' && $cat == 'uncategorized' || $cat == '' || $cat == null){
         return "#";
     }
     return route('post.show', ['category' => $this->category->slug,'slug' => $this->slug]);
