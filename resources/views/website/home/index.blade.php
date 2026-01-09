@@ -107,8 +107,8 @@
                                         </a>
                                     @else
                                         @php
-                                            $catSlug=$featuredPost?->category?->slug ?? 'null';
-                                            dd($catSlug);
+                                            $catSlug=$featuredPost?->category?->slug=='' ? 'null' : $featuredPost?->category?->slug;
+                                            
                                         @endphp
                                         <a
                                             href="{{ route('post.show', ['category' => $catSlug, 'slug' => $featuredPost?->slug]) }}">
