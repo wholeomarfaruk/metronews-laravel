@@ -1,4 +1,5 @@
 <div>
+
     <div class="mt-2">
         <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
             Featured Image
@@ -9,7 +10,7 @@
             <span class="text-red-500 text-sm">{{ $message }}</span>
         @enderror
 
-        @if ($featured_image)
+        @if ($featured_image && get_class($featured_image))
             <div class="mt-2">
                 <label class="block text-xs text-gray-500 dark:text-gray-400 mb-1">Preview:</label>
                 <img src="{{ $featured_image->temporaryUrl() }}" alt="Image Preview"
