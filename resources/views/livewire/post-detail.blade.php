@@ -29,7 +29,7 @@
         {{-- 🛑 IMPORTANT FIX: The entire list of posts --}}
         @foreach ($allPosts as $currentpost)
             <div class="wrapper my-3 post-wrapper" id="post-{{ $currentpost->id }}"
-                data-url="{{ route('post.show', ['category' => $currentpost->category->slug, 'slug' => $currentpost->slug]) }}"
+                data-url="{{ $currentpost->PostUrl }}"
                 {{-- 🎯 FIX 2: Apply a stable key to the post wrapper --}} wire:key="post-wrapper-{{ $currentpost->id }}">
 
                 {{-- Content for a single post --}}
@@ -148,7 +148,7 @@
 
                         {{-- 🎯 FIX 3: Add unique data-href --}}
                         <div wire:ignore class="fb-comments"
-                            data-href="{{ route('post.show', ['category' => $currentpost->category->slug, 'slug' => $currentpost->slug]) }}"
+                            data-href="{{ $currentpost->PostUrl }}"
                             data-width="560" data-numposts="5">
                         </div>
                     </div>
