@@ -11,6 +11,7 @@
         @enderror
 
         @if ($featured_image && get_class($featured_image))
+            @dd($featured_image);
             <div class="mt-2">
                 <label class="block text-xs text-gray-500 dark:text-gray-400 mb-1">Preview:</label>
                 <img src="{{ $featured_image->temporaryUrl() }}" alt="Image Preview"
