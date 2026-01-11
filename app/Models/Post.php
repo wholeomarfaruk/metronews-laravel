@@ -35,8 +35,8 @@ public function getFeaturedImageAttribute()
 {
     $media = $this->media?->where('category', 'featured_image')->first();
 
-    if ($media && file_exists(public_path($media->path))) {
-        return asset($media->path);
+    if ($media && file_exists(public_path('uploads/'.$media->path))) {
+        return asset('uploads/'.$media->path);
     }
 
     return asset('website/img/thumbnails/featured_img.jpg');

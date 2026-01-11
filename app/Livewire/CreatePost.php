@@ -190,7 +190,7 @@ class CreatePost extends Component
     protected function storeFeaturedImage($file)
     {
         $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-        $destinationPath = storage_path('uploads/media');
+        $destinationPath = public_path('uploads/media');
 
         // Create directory if it doesn't exist
         if (!file_exists($destinationPath)) {
@@ -198,7 +198,8 @@ class CreatePost extends Component
         }
 
         // Move uploaded file
-        $file->storeAs('media', $filename);
+        // $file->storeAs('media', $filename);
+        copy($file->getRealPath(), $destinationPath . '/' . $filename);
 
         // Return relative path for database
         return 'media/' . $filename;
