@@ -18,6 +18,7 @@ class Category extends Component
     public $parent_id;
     public $createModal = false;
     public $search = '';
+    public $category;
     public function mount()
     {
         $this->allCategories = CategoryList::all();
@@ -67,7 +68,7 @@ class Category extends Component
     }
     public function delete($categoryId)
     {
-        
+
         $category = CategoryList::find($categoryId);
         if ($category) {
             $category->delete();
@@ -81,6 +82,7 @@ class Category extends Component
     public function openEditModal($categoryId)
     {
         $category = CategoryList::find($categoryId);
+        $this->category=$category;
         if ($category) {
             $this->editCategoryId = $category->id;
             $this->editCategoryName = $category->name;
