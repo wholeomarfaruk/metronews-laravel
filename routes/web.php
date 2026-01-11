@@ -143,6 +143,7 @@ Route::get('/category/{category}/{slug}', [HomeController::class, 'postShow'])->
 // Route::get('/{slug}', [HomeController::class,'singlePost'])->name('singlepost');
 
 Route::get('/category/{category}', [HomeController::class, 'categoryPost'])->name('category');
+
 //video posts
 Route::get('/news/videos', [HomeController::class, 'videosList'])->name('video.post.list');
 Route::get('/news/shorts', [HomeController::class, 'videoShortsSelect'])->name('video.post.shorts');

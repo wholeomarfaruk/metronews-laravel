@@ -19,6 +19,7 @@ class Category extends Component
     public $createModal = false;
     public $search = '';
     public $category;
+    public $edit_url='';
     public function mount()
     {
         $this->allCategories = CategoryList::all();
@@ -83,10 +84,12 @@ class Category extends Component
     {
         $category = CategoryList::find($categoryId);
         $this->category=$category;
+
         if ($category) {
             $this->editCategoryId = $category->id;
             $this->editCategoryName = $category->name;
             $this->selectedCategory_parent_id = $category->parent_id;
+            $this->edit_url = route('category', ['category' => $category->slug]);
             $this->editModal = true;
         } else {
             session()->flash('error', 'Category not found.');

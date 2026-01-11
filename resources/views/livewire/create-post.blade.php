@@ -250,7 +250,7 @@
                             </div>
                         </div>
                     @endcan()
-                    <div class="mt-2" >
+                    <div class="mt-2">
                         <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
                             Featured Image
                         </label>
@@ -260,8 +260,8 @@
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                         <div wire:loading wire:target="featured_image">
-    <span class="text-xs text-gray-500">Uploading...</span>
-</div>
+                            <span class="text-xs text-gray-500">Uploading...</span>
+                        </div>
 
                         @if ($featured_image)
                             {{-- @dd($featured_image); --}}
