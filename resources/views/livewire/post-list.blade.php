@@ -120,9 +120,9 @@
                                                     <p class="text-theme-sm text-gray-500 dark:text-gray-400">
 
                                                     </p>
-                                                    <div class="h-10 w-50 overflow-hidden rounded-lg">
+                                                    <div class="h-20 min-w-20 overflow-hidden rounded-lg">
 
-                                                        <img src="{{ asset('uploads/'.$post->media->where('category','featured_image')->first()?->path) }}"
+                                                        <img style="height:100%; width: auto;" src="{{ $post->featured_image }}"
                                                             alt="brand" />
                                                     </div> -
 

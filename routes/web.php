@@ -63,7 +63,16 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-
+Route::get('debug', function () {
+    return response()->json([
+        'public_path'   => public_path(),
+        'storage_path'  => storage_path(),
+        'app_path'      => app_path(),
+        'base_path'     => base_path(),
+        'cwd'           => getcwd(),
+        'assets_path'   => asset(''),
+    ]);
+});
 
 route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')
     ->group(function () {
@@ -76,7 +85,7 @@ route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')
         })->name('users');
         Route::get('/authors',[AuthorController::class, 'author'])->name('authors');
         //roles
-        
+
         Route::get('/roles/create', [RolesController::class, 'createRoleForm'])->name('roles.create');
         Route::post('/roles/store', [RolesController::class, 'createRole'])->name('roles.store');
         Route::get('/roles/edit/{id}', [RolesController::class, 'editRole'])->name('roles.edit');
