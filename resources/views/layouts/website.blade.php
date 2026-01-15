@@ -639,7 +639,7 @@
             <div class="row g-3 justify-content-between w-100 align-items-center">
                 <div class="col-sm-7">
                     <p class="small text-muted">
-                        <span>Editor (in charge): Mizanur Rahman<br>© 2025 All Rights Reserved |
+                        <span>Editor & Publisher: Md. Mejanur Rahman<br>© 2025 All Rights Reserved |
                             MetroNews.info</span><br>
                         <svg class="footer-icon" aria-hidden="true" focusable="false" data-prefix="fas"
                             data-icon="map-marker-alt" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -648,7 +648,9 @@
                                 d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z">
                             </path>
                         </svg>
-                        Mirpur, Dhaka-1216
+                        Corporate Office:
+Address: House #2 (G. Floor), Road #8,
+Block-D, Section -11, Mirpur, Dhaka-1216
                         <br>
                         <abbr title="Phone:">
                             <svg class="footer-icon" aria-hidden="true" focusable="false" data-prefix="fas"
@@ -658,7 +660,8 @@
                                     d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z">
                                 </path>
                             </svg>
-                        </abbr> +880 1318-553300,
+                        </abbr>  +880 1318-55 33 00,<br>
++880 9606 35 53 55,
 
                         <span class="small">
                             <abbr title="Email:">
