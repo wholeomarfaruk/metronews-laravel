@@ -72,8 +72,10 @@ class Uploader
             mkdir($destinationPath, 0755, true); // recursive
         }
 
+
         // Move uploaded file
-        $file->storeAs('media', $filename);
+        // $file->storeAs('media', $filename);
+        copy($file->getRealPath(), $destinationPath . '/' . $filename);
 
         // Return relative path for database
 
