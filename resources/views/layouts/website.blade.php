@@ -97,7 +97,7 @@
 
             <div class="logo" >
                 <a href="/">
-                    <span class="fw-bold">Fast.Fresh.Metro News</span><br>
+                    {{-- <span class="fw-bold">Fast.Fresh.Metro News</span><br> --}}
                     <img style="max-width: 75px !important;" src="{{ asset('website/img/logo/logo-transparent.png') }}" alt=""></a>
 
             </div>
@@ -557,7 +557,15 @@
 </header>
 
 <main id="main_area">
+    <div class="wrapper">
+
+            @livewire('ad-component', ['id' => 18], key('ad-18'))
+        </div>
     @yield('content')
+    <div class="wrapper">
+
+    @livewire('ad-component', ['id' => 17], key('ad-17'))
+</div>
 </main>
 <footer id="footer_area">
 
@@ -565,7 +573,7 @@
 
         <div class="logo">
             <a href="/">
-                <span class="fw-bold">Fast.Fresh. Metro News</span><br>
+                {{-- <span class="fw-bold">Fast.Fresh. Metro News</span><br> --}}
                 <img style="max-width: 100px !important;" src="{{ asset('website/img/logo/logo-transparent.png') }}" alt="">
             </a>
         </div>

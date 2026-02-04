@@ -22,7 +22,8 @@ class HomeController extends Controller
         $videos = VideoPost::where('status', 'published')
         ->where('type','landscape_video')
         ->latest()->take(10)->get();
-
+    //                                             $oporad = $categories->find(12)->posts()->latest()->first();
+    // dd($oporad);
         return view('website.home.index', compact('latestPost', 'categories', 'featuredPost', 'videos'));
     }
     public function postShow($category, $slug)

@@ -106,9 +106,7 @@
                                             </div>
                                         </a>
                                     @else
-
-                                        <a
-                                            href="{{ $featuredPost->PostUrl }}">
+                                        <a href="{{ $featuredPost->PostUrl }}">
                                             <div class="card mb-3 p-2 rounded ">
                                                 <div class="row flex-column g-0">
                                                     <div class="col-auto">
@@ -344,7 +342,36 @@
                                                 </a>
                                             </div>
                                         </div>
+                                          @php
+                                                $oporad = $categories->find(12)->posts()->latest()->first();
+                                            @endphp
+                                        @if ($oporad)
 
+
+                                        <div class="col-lg-12 col-6">
+
+                                            <div class="card">
+                                                <a
+                                                    href="{{ route('post.show', ['category' => $oporad->category->slug, 'slug' => $oporad->slug]) }}">
+                                                    <div class="row g-0 align-items-center">
+                                                        <div class="col-md-5">
+                                                            <img style="object-fit: cover;"
+                                                                src="{{ $oporad->featured_image }}"
+                                                                class="img-fluid rounded-start" alt="...">
+                                                        </div>
+                                                        <div class="col-md-7 m-0 p-0">
+                                                            <div class="card-body m-0 p-0">
+                                                                <h3 class="card-title secondpost-title ms-3">
+                                                                    {{ $oporad->title }}
+                                                                </h3>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+ @endif
                                     </div>
 
                                 </div>
@@ -371,8 +398,7 @@
                                         </svg>
                                     </a>
                                     <!-- YouTube -->
-                                    <a href="#" target="_blank"
-                                        class="btn-hover-effect-1 social-icon youtube">
+                                    <a href="#" target="_blank" class="btn-hover-effect-1 social-icon youtube">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48"
                                             height="48" viewBox="0 0 48 48">
                                             <path fill="#FF3D00"
@@ -400,37 +426,78 @@
     @endif
     <!--Banner section section End -->
     @if ($categories && $categories->count() > 0)
+        <div class="wrapper">
+
+            @livewire('ad-component', ['id' => 8], key('ad-8'))
+        </div>
         @if ($categories?->find(7)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(7)->posts()->latest()->get() ?? collect()" :style="1" />
         @endif
+        <div class="wrapper">
+
+            @livewire('ad-component', ['id' => 9], key('ad-9'))
+        </div>
+
         @if ($categories?->find(9)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(9)->posts()->latest()->get() ?? collect()" :style="2" />
         @endif
+        <div class="wrapper">
+
+            @livewire('ad-component', ['id' => 10], key('ad-10'))
+        </div>
+
         @if ($categories?->find(8)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(8)->posts()->latest()->get() ?? collect()" :style="3" />
         @endif
+        <div class="wrapper">
+
+            @livewire('ad-component', ['id' => 11], key('ad-11'))
+        </div>
+
         @if ($categories?->find(5)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(5)->posts()->latest()->get() ?? collect()" :style="5" />
         @endif
+        <div class="wrapper">
+
+            @livewire('ad-component', ['id' => 12], key('ad-12'))
+        </div>
+
         @if ($categories?->find(3)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(3)->posts()->latest()->get() ?? collect()" :style="1" />
         @endif
+        <div class="wrapper">
+
+            @livewire('ad-component', ['id' => 13], key('ad-13'))
+        </div>
 
         @if ($videos)
             <x-video-section-carousel :videos="$videos ?? collect()" />
         @endif
+        <div class="wrapper">
+
+            @livewire('ad-component', ['id' => 14], key('ad-14'))
+        </div>
         @if ($categories?->find(10)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(10)->posts()->latest()->get() ?? collect()" :style="5" />
         @endif
+        <div class="wrapper">
+
+            @livewire('ad-component', ['id' => 15], key('ad-15'))
+        </div>
         @if ($categories?->find(29)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(29)->posts()->latest()->get() ?? collect()" :style="2" />
         @endif
+        <div class="wrapper">
+
+            @livewire('ad-component', ['id' => 16], key('ad-16'))
+        </div>
         @if ($categories?->find(4)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(4)->posts()->latest()->get() ?? collect()" :style="3" />
         @endif
     @endif
 
 @endsection
+
 @push('scripts')
     <script>
         $('.owl-carousel').owlCarousel({
