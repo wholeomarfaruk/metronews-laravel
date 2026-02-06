@@ -710,12 +710,12 @@
                     @if (setting('general.address') && !empty(setting('general.address')))
                         <li class="nav-link d-flex flex-row align-items-center justify-content-start  text-white"
                             >
-                            <span
+                            <div
                                 class="me-2 text-white border border-color-white d-flex justify-content-center align-items-center  px-2 py-1 rounded shadow-sm text-center "
-                                style="width: 60px !important; height: 60px; background-color: #022358; font-size: 25px;">
+                                style="width: 60px !important; min-width: 60px; height: 60px; background-color: #022358; font-size: 25px;">
 
                                 <i class="fa-solid fa-location-dot"></i>
-                            </span>
+                            </div>
                             <div>
                                 <h5>Corporate Office</h5>
                                 <p class="" style="color: rgb(212, 212, 212)">
