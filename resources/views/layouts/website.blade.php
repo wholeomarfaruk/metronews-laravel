@@ -716,7 +716,7 @@
 
                                 <i class="fa-solid fa-location-dot"></i>
                             </div>
-                            <div>
+                            <div style="flex-grow: auto;">
                                 <h5>Corporate Office</h5>
                                 <p class="" style="color: rgb(212, 212, 212)">
 
