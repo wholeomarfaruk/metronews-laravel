@@ -10,6 +10,7 @@
 @section('meta_canonical', $post->PostUrl)
 
 @section('content')
+
     @livewire('post-detail', ['id' => $post->id],key($post->id))
 @endsection
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Website\HomeController;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use GuzzleHttp\Psr7\Request;
 use Livewire\Volt\Volt;
+use Ramsey\Collection\Set;
+
 require __DIR__ . '/auth.php';
 
 Route::get('/test', function () {
@@ -125,6 +128,10 @@ route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')
         Route::get('/ads', [AdController::class, 'index'])->name('ads');
         Route::get('/ads/edit/{id}', [AdController::class, 'edit'])->name('ads.edit');
 
+        //settings
+        Route::get('/settings', [SettingController::class, 'index'])->name('settings');
+        Route::get('/settings/general',[SettingController::class, 'general'])->name('settings.general');
+        Route::get('/settings/social',[SettingController::class, 'social'])->name('settings.social');
         Route::get('/clear-cache', function () {
             Artisan::call('optimize:clear');
             return "Cache cleared successfully!";
@@ -134,6 +141,7 @@ route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')
             Artisan::call('migrate', ['--force' => true]);
             return "Migration completed successfully!";
         });
+
     });
 // Category page
 Route::get('/posts/recent', [HomeController::class, 'recentPosts'])->name('recent.post.list');

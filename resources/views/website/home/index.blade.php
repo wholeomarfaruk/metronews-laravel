@@ -15,9 +15,8 @@
 
         .newsticker .scrolling,
         .newsticker .heading {
-            font-size: 16px;
+            font-size: 18px;
         }
-
         .newsticker .heading-box {
             background-color: red;
             width: fit-content;
@@ -30,14 +29,14 @@
 
         .newsticker .heading-box,
         .newsticker .scrolling {
-            height: 30px;
+            height: 40px;
         }
 
         @media (max-width: 768px) {
 
             .newsticker .scrolling,
             .newsticker .heading {
-                font-size: 12px;
+                font-size: 16px;
             }
 
             .newsticker .heading-box,
@@ -385,7 +384,7 @@
                                 <p class="fw-bold  col-5" style="font-size: 18px;">Follow Us</p>
                                 <div class=" col-7 d-flex justify-content-center gap-3 align-items-center">
                                     <!-- Facebook -->
-                                    <a href="https://www.facebook.com/metronewsbangla" target="_blank"
+                                    <a href="{{ setting('social.facebook','#') }}" target="_blank"
                                         class="btn-hover-effect-1 social-icon facebook">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48"
                                             height="48" viewBox="0 0 48 48">
@@ -398,7 +397,7 @@
                                         </svg>
                                     </a>
                                     <!-- YouTube -->
-                                    <a href="#" target="_blank" class="btn-hover-effect-1 social-icon youtube">
+                                    <a href="{{ setting('social.youtube','#') }}" target="_blank" class="btn-hover-effect-1 social-icon youtube">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48"
                                             height="48" viewBox="0 0 48 48">
                                             <path fill="#FF3D00"

@@ -4,7 +4,6 @@
 
             <div class="space-y-6 border-t border-gray-100 p-5 sm:p-6 dark:border-gray-800">
 
-
                 <div class="px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-end">
                     <div x-data="{ switcherToggle: @entangle('status') }">
                         <label for="toggle2"
@@ -138,7 +137,7 @@
         });
 
 
-        
+
 
     </script>
 @endpush

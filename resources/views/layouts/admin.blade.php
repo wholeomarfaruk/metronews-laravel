@@ -610,7 +610,23 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
 
             })
         </script>
+
     @livewireScripts()
+     <script>
+            // When Livewire updates, re-init editor if needed
+
+            Livewire.on('toast', (data) => {
+                // console.log(data)
+
+                $toaster.fire({
+                    icon: data[0].type,
+                    title: data[0].message
+                });
+            });
+            Livewire.on('loaded', () => {
+                console.log('Loaded')
+            });
+        </script>
     <script defer src="{{ asset('tailadmin/build/bundle.js') }}"></script>
 
 
