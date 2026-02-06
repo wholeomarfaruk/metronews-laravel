@@ -583,10 +583,10 @@
     <footer id="footer_area" style="background: #022c6f;">
         <div class="row wrapper py-4 gap-0 gap-md-0">
             <div class="col-12 col-md-4">
-                <h3 class="text-white mb-3">{{ setting('general.site_title','News Portal') }}</h3>
+                <h3 class="text-white mb-3">{{ setting('general.site_title', 'News Portal') }}</h3>
                 <p class="text-white mb-2">
 
-                     {!! nl2br(e(setting('general.footer_text'))) !!}
+                    {!! nl2br(e(setting('general.footer_text'))) !!}
 
                 </p>
                 <div class="social">
@@ -652,22 +652,26 @@
                 <h3 class="text-white mb-3">Quick Links</h3>
                 <ul class="navbar-nav d-flex flex-column flex-wrap gap-0">
                     <li class="nav-item">
-                        <a class="nav-link text-white m-0" href="{{ route('home') }}"><i class="fa-solid fa-arrow-right"></i> Home</a>
+                        <a class="nav-link text-white m-0" href="{{ route('home') }}"><i
+                                class="fa-solid fa-arrow-right"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white m-0" href="#"><i class="fa-solid fa-arrow-right"></i> About</a>
+                        <a class="nav-link text-white m-0" href="#"><i class="fa-solid fa-arrow-right"></i>
+                            About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white m-0" href="#"><i class="fa-solid fa-arrow-right"></i> Contact</a>
+                        <a class="nav-link text-white m-0" href="#"><i class="fa-solid fa-arrow-right"></i>
+                            Contact</a>
                     </li>
                 </ul>
             </div>
             <div class="col-12 col-md-4">
                 <h3 class="text-white mb-3">Contact Us</h3>
                 <ul class="navbar-nav d-flex flex-column flex-wrap gap-2">
-                    @if ((setting('general.phone') && !empty(setting('general.phone'))) || (setting('general.secondary_phone') && !empty(setting('general.secondary_phone'))))
-
-                    <li class="d-flex flex-row align-items-center justify-content-start  text-white"
+                    @if (
+                        (setting('general.phone') && !empty(setting('general.phone'))) ||
+                            (setting('general.secondary_phone') && !empty(setting('general.secondary_phone'))))
+                        <li class="d-flex flex-row align-items-center justify-content-start  text-white"
                             href="tel:{{ setting('general.phone') }}">
                             <span
                                 class="me-2  text-white border border-color-white d-flex justify-content-center align-items-center  px-2 py-1 rounded shadow-sm text-center "
@@ -676,17 +680,16 @@
                             </span>
                             <div>
                                 <h5>Call Us 24/7</h5>
-                                  <p class="" style="color: rgb(212, 212, 212)">
-                                {{ setting('general.phone') }}<br>
-                                {{ setting('general.secondary_phone') }}
-                                </p>    
+                                <p class="" style="color: rgb(212, 212, 212)">
+                                    {{ setting('general.phone') }}<br>
+                                    {{ setting('general.secondary_phone') }}
+                                </p>
                             </div>
-                        
-                    </li>
+
+                        </li>
                     @endif
                     @if (setting('general.email') && !empty(setting('general.email')))
-
-                    <li class=" d-flex flex-row align-items-center justify-content-start text-white"
+                        <li class=" d-flex flex-row align-items-center justify-content-start text-white"
                             href="mailto:{{ setting('general.email') }}">
                             <span
                                 class="me-2 text-white border border-color-white d-flex justify-content-center align-items-center  px-2 py-1 rounded shadow-sm text-center "
@@ -696,21 +699,20 @@
                             </span>
                             <div>
                                 <h5 class="">Work with Us</h5>
-                                  <p class="" style="color: rgb(212, 212, 212)">
-                                {{ setting('general.email') }}
+                                <p class="" style="color: rgb(212, 212, 212)">
+                                    {{ setting('general.email') }}
                                 </p>
                             </div>
-                        
-                    </li>
+
+                        </li>
                     @endif
 
                     @if (setting('general.address') && !empty(setting('general.address')))
-                        
-                    
-                    <li  class="nav-link d-flex flex-row align-items-center justify-content-start  text-white" href="javascript(0)">
+                        <li class="nav-link d-flex flex-row align-items-center justify-content-start  text-white"
+                            >
                             <span
                                 class="me-2 text-white border border-color-white d-flex justify-content-center align-items-center  px-2 py-1 rounded shadow-sm text-center "
-                                style="width: 60px; height: 60px; background-color: #022358; font-size: 25px;">
+                                style="width: 60px !important; height: 60px; background-color: #022358; font-size: 25px;">
 
                                 <i class="fa-solid fa-location-dot"></i>
                             </span>
@@ -721,14 +723,16 @@
                                     {{ setting('general.address') }}
                                 </p>
                             </div>
-                    </li>
+                        </li>
                     @endif
                 </ul>
             </div>
         </div>
         <hr>
-        <div class="wrapper py-3"> 
-            <h2  style="font-size: 14px;font-weight: 400;color: #ffffffab; text-align:center;">© 2026. All right Reserved Developed By <a href="https://bento.me/alimuzahid " style="font-weight: 600;color: #fff">Ali Muzahid</a></h2>
+        <div class="wrapper py-3">
+            <h2 style="font-size: 14px;font-weight: 400;color: #ffffffab; text-align:center;">© 2026. All right
+                Reserved Developed By <a href="https://bento.me/alimuzahid " style="font-weight: 600;color: #fff">Ali
+                    Muzahid</a></h2>
         </div>
 
     </footer>
