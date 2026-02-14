@@ -283,10 +283,10 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="langswitch-box btn">
+                        <div class="langswitch-box">
                             <form action="">
                                 <fieldset>
-                                    <select class="form-control " name="" id="lang-switcher">
+                                    <select class="form-control btn" name="" id="lang-switcher">
                                         <option value="bn">BN</option>
                                         <option value="en">EN</option>
                                     </select>
