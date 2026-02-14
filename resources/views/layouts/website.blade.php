@@ -647,11 +647,11 @@
                 </div>
             </div>
             <div class="col-12 col-md-4 footer-card quick-link">
-                <h3 class="mb-3 footer-card-title underline text-decoration-underline">গুরুত্বপূর্ণ লিংকসমূহ</h3>
+                <h3 class="mb-3 footer-card-title underline text-decoration-underline"> গুরুত্বপূর্ণ লিংকসমূহ</h3>
                 <ul class="navbar-nav ">
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('home') }}"><i
-                                class="fa-solid fa-arrow-right-long"></i>মেট্রো নিউজ</a>
+                                class="fa-solid fa-arrow-right-long"></i> মেট্রো নিউজ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
