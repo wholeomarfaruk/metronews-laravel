@@ -118,7 +118,7 @@
                 <div class="tools">
                       <div class="btn-group"><span class="btn e-paper">Fast. Fresh. Metro News.</span></div>
                     <div class="date">
-                        <p id="localdate">২০শে আগস্ট, ২০২৫</p>
+                        <p id="localdate" class="btn e-paper">২০শে আগস্ট, ২০২৫</p>
                     </div>
                     <div class="btn-group ">
                         <a href="#" class="btn e-paper"> <i class="fa-solid fa-newspaper"></i> ই-পেপার </a>
@@ -286,7 +286,7 @@
                         <div class="langswitch-box">
                             <form action="">
                                 <fieldset>
-                                    <select class="form-control btn" name="" id="lang-switcher">
+                                    <select class="form-control " name="" id="lang-switcher">
                                         <option value="bn">BN</option>
                                         <option value="en">EN</option>
                                     </select>
