@@ -593,9 +593,8 @@
             <div class="col-12 col-md-4 footer-card">
                 <h3 class=" mb-3 footer-card-title">{{ setting('general.site_title', 'News Portal') }}</h3>
                 <p class=" mb-2 footer-card-text">
-
-                    {!! nl2br(e(setting('general.footer_text'))) !!}
-
+                    <span>সম্পাদক ও প্রকাশক</span><br>
+                    <span class="fs-4 fw-bold">মোঃ মিজানুর রাহমান</span>
                 </p>
                 <div class="social">
                     {{-- <h6>সোশ্যাল মিডিয়া</h6> --}}
@@ -657,43 +656,43 @@
                 </div>
             </div>
             <div class="col-12 col-md-4 footer-card quick-link">
-                <h3 class="mb-3 footer-card-title underline text-decoration-underline">Quick Links</h3>
+                <h3 class="mb-3 footer-card-title underline text-decoration-underline">গুরুত্বপূর্ণ লিংকসমূহ</h3>
                 <ul class="navbar-nav ">
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('home') }}"><i
-                                class="fa-solid fa-arrow-right-long"></i> Home</a>
+                                class="fa-solid fa-arrow-right-long"></i>মেট্রো নিউজ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
-                            About</a>
+                            গোপনীয়তার নীতি</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
-                            Contact</a>
+                            শর্তাবলি</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('home') }}"><i
-                                class="fa-solid fa-arrow-right-long"></i> Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
-                            About</a>
+                        <a class="nav-link " href="#"><i
+                                class="fa-solid fa-arrow-right-long"></i> মন্তব্য প্রকাশের নীতিমালা</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
-                            Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('home') }}"><i
-                                class="fa-solid fa-arrow-right-long"></i> Home</a>
+                            বিজ্ঞাপন</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
-                            About</a>
+                            যোগাযোগ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/posts/recent"><i
+                                class="fa-solid fa-arrow-right-long"></i> সর্বশেষ খবর </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
-                            Contact</a>
+                            জনপ্রিয় খবর </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
+                            মতামত</a>
                     </li>
                 </ul>
             </div>
