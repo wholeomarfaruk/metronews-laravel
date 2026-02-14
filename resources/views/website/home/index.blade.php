@@ -441,7 +441,7 @@
         </div>
 
         @if ($categories?->find(8)?->posts()?->latest()?->get())
-            <x-post-section :newsPosts="$categories->find(9)->posts()->latest()->get() ?? collect()" :style="2" />
+            <x-post-section :newsPosts="$categories->find(8)->posts()->latest()->get() ?? collect()" :style="2" />
         @endif
         <div class="wrapper">
 
@@ -449,7 +449,7 @@
         </div>
 
         @if ($categories?->find(5)?->posts()?->latest()?->get())
-            <x-post-section :newsPosts="$categories->find(8)->posts()->latest()->get() ?? collect()" :style="3" />
+            <x-post-section :newsPosts="$categories->find(5)->posts()->latest()->get() ?? collect()" :style="3" />
         @endif
 
         <div class="wrapper">
@@ -457,7 +457,7 @@
             @livewire('ad-component', ['id' => 11,"height" => "80px"], key('ad-11'))
         </div>
         @if ($categories?->find(4)?->posts()?->latest()?->get())
-            <x-post-section :newsPosts="$categories->find(6)->posts()->latest()->get() ?? collect()" :style="2" />
+            <x-post-section :newsPosts="$categories->find(4)->posts()->latest()->get() ?? collect()" :style="2" />
         @endif
 
 
@@ -466,7 +466,7 @@
             @livewire('ad-component', ['id' => 12,"height" => "80px"], key('ad-12'))
         </div>
         @if ($categories?->find(2)?->posts()?->latest()?->get())
-            <x-post-section :newsPosts="$categories->find(5)->posts()->latest()->get() ?? collect()" :style="5" />
+            <x-post-section :newsPosts="$categories->find(2)->posts()->latest()->get() ?? collect()" :style="5" />
         @endif
 
         {{-- <div class="wrapper">

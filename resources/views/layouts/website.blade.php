@@ -93,6 +93,11 @@
 
 
     <header id="header_area" class="shadow-sm">
+        <div class="border-bottom border-secondary">
+
+            @livewire('ad-component', ['id' => 19,"height" => "100px"], key('ad-19'))
+        </div>
+
         <div class="wrapper">
 
 
@@ -100,9 +105,8 @@
                 <img src="{{ asset('website/img/ad/728x90.png') }}" alt="">
             </div> --}}
 
-            @livewire('ad-component', ['id' => 19,"height" => "100px"], key('ad-19'))
 
-            <div class="top_bar border-top border-secondary">
+            <div class="top_bar ">
 
                 <div class="logo">
                     <a href="/">
