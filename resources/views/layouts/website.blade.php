@@ -51,7 +51,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Include stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.0.3') }}">
+    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.0.4') }}">
     @stack('styles')
 </head>
 

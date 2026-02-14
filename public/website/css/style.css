@@ -637,13 +637,13 @@ input[type=search] {
 .footer-2 .top-footer .footer-card .footer-card-title {
   font-size: 20px;
   color: #fff;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif, "SolaimanLipi";
   font-weight: 700;
 }
 .footer-2 .top-footer .footer-card .footer-card-text {
   font-size: 1rem;
   color: #b4b6b9;
-  font-family: "poppins", sans-serif;
+  font-family: "poppins", sans-serif, "SolaimanLipi";
 }
 .footer-2 .top-footer .footer-card .social {
   margin-top: 30px;
@@ -736,11 +736,11 @@ input[type=search] {
   font-size: 1rem;
   color: #fff;
   transition: all ease-in-out 0.3s;
-  font-family: "montserrat", sans-serif;
+  font-family: "montserrat", sans-serif, "SolaimanLipi";
 }
 .footer-2 .top-footer .footer-card.contact ul li.contact-item .text {
   font-size: 1rem;
   color: #b4b6b9;
   transition: all ease-in-out 0.3s;
-  font-family: "poppins", sans-serif;
+  font-family: "poppins", sans-serif, "SolaimanLipi";
 }/*# sourceMappingURL=style.css.map */
