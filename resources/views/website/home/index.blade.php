@@ -428,7 +428,7 @@
     @if ($categories && $categories->count() > 0)
         <div class="wrapper">
 
-            @livewire('ad-component', ['id' => 8], key('ad-8'))
+            @livewire('ad-component', ['id' => 8,"height" => "80px"], key('ad-8'))
         </div>
         @if ($videos)
             <x-video-section-carousel :videos="$videos ?? collect()" />

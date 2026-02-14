@@ -95,7 +95,7 @@
     <header id="header_area" class="shadow-sm">
         <div class="border-bottom" style="border-color:#ddd;">
 
-            @livewire('ad-component', ['id' => 19,"height" => "100px"], key('ad-19'))
+            @livewire('ad-component', ['id' => 19,"height" => "80px"], key('ad-19'))
         </div>
 
         <div class="wrapper">
