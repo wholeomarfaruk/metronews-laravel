@@ -95,7 +95,7 @@
     <header id="header_area" class="shadow-sm">
         <div class="border-bottom" style="border-color:#ddd;">
 
-            @livewire('ad-component', ['id' => 19,"height" => "80px"], key('ad-19'))
+            @livewire('ad-component', ['id' => 19, 'height' => '80px'], key('ad-19'))
         </div>
 
         <div class="wrapper">
@@ -116,7 +116,7 @@
 
                 </div>
                 <div class="tools">
-                      <div class="btn-group"><span class="btn e-paper">Fast. Fresh. Metro News.</span></div>
+                    <div class="btn-group"><span class="btn e-paper">Fast. Fresh. Metro News.</span></div>
                     <div class="date btn-group">
                         <p id="localdate" class="btn e-paper">২০শে আগস্ট, ২০২৫</p>
                     </div>
@@ -580,12 +580,12 @@
     <main id="main_area">
         <div class="wrapper">
 
-            @livewire('ad-component', ['id' => 18,"height" => "80px"], key('ad-18'))
+            @livewire('ad-component', ['id' => 18, 'height' => '80px'], key('ad-18'))
         </div>
         @yield('content')
         <div class="wrapper">
 
-            @livewire('ad-component', ['id' => 17,"height" => "80px"], key('ad-17'))
+            @livewire('ad-component', ['id' => 17, 'height' => '80px'], key('ad-17'))
         </div>
     </main>
     <footer id="footer_area" class="footer-2" style="background: #022c6f;">
@@ -594,60 +594,51 @@
                 <h3 class=" mb-3 footer-card-title">{{ setting('general.site_title', 'News Portal') }}</h3>
                 <p class=" mb-2 footer-card-text">
                     <span>সম্পাদক ও প্রকাশক</span><br>
-                    <span class="fs-4 text-white">মোঃ মিজানুর রাহমান</span>
+                    <span class="fs-4 text-white">মোঃ মিজানুর রাহমান</span><br>
+                    {!! nl2br(e(setting('general.footer_text'))) !!}
+
                 </p>
                 <div class="social">
                     {{-- <h6>সোশ্যাল মিডিয়া</h6> --}}
                     <ul class="navbar-nav d-flex flex-row gap-2 justify-content-start align-items-center">
                         @if (setting('social.facebook'))
                             <li class="nav-item">
-                                <a class="nav-link"
-                                    style="" target="_blank"
+                                <a class="nav-link" style="" target="_blank"
                                     href="{{ setting('social.facebook') }}"> <i class="fa-brands fa-facebook"></i>
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.instagram'))
                             <li class="nav-item">
-                                <a target="_blank"
-                                    class="nav-link "
-                                    style=""
+                                <a target="_blank" class="nav-link " style=""
                                     href="{{ setting('social.instagram') }}"> <i class="fa-brands fa-instagram"></i>
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.youtube'))
                             <li class="nav-item">
-                                <a target="_blank"
-                                    class="nav-link "
-                                    style=""
+                                <a target="_blank" class="nav-link " style=""
                                     href="{{ setting('social.youtube') }}"> <i class="fa-brands fa-youtube"></i>
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.twitter'))
                             <li class="nav-item">
-                                <a target="_blank"
-                                    class="nav-link "
-                                    style=""
+                                <a target="_blank" class="nav-link " style=""
                                     href="{{ setting('social.twitter') }}"> <i class="fa-solid fa-x"></i>
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.linkedin'))
                             <li class="nav-item">
-                                <a target="_blank"
-                                    class="nav-link "
-                                    style=""
+                                <a target="_blank" class="nav-link " style=""
                                     href="{{ setting('social.linkedin') }}"> <i class="fa-brands fa-linkedin"></i>
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.tiktok'))
                             <li class="nav-item">
-                                <a target="_blank"
-                                    class="nav-link "
-                                    style=""
+                                <a target="_blank" class="nav-link " style=""
                                     href="{{ setting('social.tiktok') }}"> <i class="fa-brands fa-tiktok"></i>
                                 </a>
                             </li>
@@ -671,8 +662,8 @@
                             শর্তাবলি</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#"><i
-                                class="fa-solid fa-arrow-right-long"></i> মন্তব্য প্রকাশের নীতিমালা</a>
+                        <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i> মন্তব্য
+                            প্রকাশের নীতিমালা</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
@@ -683,8 +674,8 @@
                             যোগাযোগ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="/posts/recent"><i
-                                class="fa-solid fa-arrow-right-long"></i> সর্বশেষ খবর </a>
+                        <a class="nav-link " href="/posts/recent"><i class="fa-solid fa-arrow-right-long"></i>
+                            সর্বশেষ খবর </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
@@ -702,11 +693,8 @@
                     @if (
                         (setting('general.phone') && !empty(setting('general.phone'))) ||
                             (setting('general.secondary_phone') && !empty(setting('general.secondary_phone'))))
-                        <li class="contact-item"
-                            href="tel:{{ setting('general.phone') }}">
-                            <span
-                                class="icon "
-                                >
+                        <li class="contact-item" href="tel:{{ setting('general.phone') }}">
+                            <span class="icon ">
                                 <i class="fa-solid fa-phone"></i>
                             </span>
                             <div>
@@ -720,16 +708,14 @@
                         </li>
                     @endif
                     @if (setting('general.email') && !empty(setting('general.email')))
-                        <li class="contact-item "
-                            href="mailto:{{ setting('general.email') }}">
-                            <span
-                                class="icon">
+                        <li class="contact-item " href="mailto:{{ setting('general.email') }}">
+                            <span class="icon">
 
                                 <i class="fa-solid fa-envelope"></i>
                             </span>
                             <div>
                                 <h5 class="title">Work with Us</h5>
-                                <p class="text" >
+                                <p class="text">
                                     {{ setting('general.email') }}
                                 </p>
                             </div>
