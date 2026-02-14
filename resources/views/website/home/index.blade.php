@@ -21,7 +21,7 @@
         .newsticker .heading-box {
             background-color: red;
             width: fit-content;
-            min-width: 80px;
+            min-width: 120px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -55,7 +55,7 @@
     {{-- NewsTracker --}}
     <section class="newsticker">
         <div class="d-flex  overflow-hidden align-items-center border-bottom">
-            <div class=" heading-box bg-opacity-50" style="">
+            <div class="heading-box bg-opacity-50" style="">
                 <p class="m-0 fw-bold  text-white heading">প্রধান সংবাদ:</p>
             </div>
 
