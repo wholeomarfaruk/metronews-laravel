@@ -116,6 +116,7 @@
 
                 </div>
                 <div class="tools">
+                      <div class="btn-group">Fast. Fresh. Metro News.</div>
                     <div class="date">
                         <p id="localdate">২০শে আগস্ট, ২০২৫</p>
                     </div>
