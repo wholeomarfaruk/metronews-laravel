@@ -47,7 +47,7 @@
 
             .newsticker .heading-box {
 
-                min-width: 100px;
+                min-width: 120px;
 
             }
         }
@@ -56,7 +56,7 @@
     <section class="newsticker">
         <div class="d-flex  overflow-hidden align-items-center border-bottom">
             <div class=" heading-box bg-opacity-50" style="">
-                <p class="m-0 fw-bold  text-white heading">Headline:</p>
+                <p class="m-0 fw-bold  text-white heading">প্রধান সংবাদ:</p>
             </div>
 
             <marquee class="scrolling flex-grow-1 d-flex align-items-center" behavior="" speed="100" direction="rtl"
