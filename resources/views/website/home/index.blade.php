@@ -434,7 +434,7 @@
             <x-video-section-carousel :videos="$videos ?? collect()" />
         @endif
         @if ($categories?->find(6)?->posts()?->latest()?->get())
-            <x-post-section :newsPosts="$categories->find(7)->posts()->latest()->get() ?? collect()" :style="1" />
+            <x-post-section :newsPosts="$categories->find(6)->posts()->latest()->get() ?? collect()" :style="1" />
         @endif
         <div class="wrapper">
             @livewire('ad-component', ['id' => 9,"height" => "80px"], key('ad-9'))
