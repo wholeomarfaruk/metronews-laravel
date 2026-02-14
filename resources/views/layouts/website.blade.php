@@ -594,7 +594,7 @@
                 <h3 class=" mb-3 footer-card-title">{{ setting('general.site_title', 'News Portal') }}</h3>
                 <p class=" mb-2 footer-card-text">
                     <span>সম্পাদক ও প্রকাশক</span><br>
-                    <span class="fs-4 fw-bold">মোঃ মিজানুর রাহমান</span>
+                    <span class="fs-4 text-white">মোঃ মিজানুর রাহমান</span>
                 </p>
                 <div class="social">
                     {{-- <h6>সোশ্যাল মিডিয়া</h6> --}}
