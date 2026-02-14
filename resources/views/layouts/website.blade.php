@@ -117,7 +117,7 @@
                 </div>
                 <div class="tools">
                       <div class="btn-group"><span class="btn e-paper">Fast. Fresh. Metro News.</span></div>
-                    <div class="date">
+                    <div class="date btn-group">
                         <p id="localdate" class="btn e-paper">২০শে আগস্ট, ২০২৫</p>
                     </div>
                     <div class="btn-group ">
