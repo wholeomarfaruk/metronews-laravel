@@ -8,8 +8,8 @@
             <div class="row">
                 <div class="col-12 col-md-8">
 <a href="{{ route('post.show', ['category' => $bigPost->category->slug, 'slug' => $bigPost->slug]) }}">
-                <div class="post-item position-relative rounded overflow-hidden">
-                    <img src="{{ $bigPost->featured_image }}" loading="lazy" alt="">
+                <div class="post-item position-relative rounded overflow-hidden ">
+                    <img src="{{ $bigPost->featured_image }}" loading="lazy" alt="" class="hero-section-post-img">
                     <div class="details d-flex align-items-start justify-content-end position-absolute z-index-1 bottom-0 start-0 end-0 top-0 flex-column"
                          style="background: linear-gradient(180deg, rgba(42,123,155,0) 70%, rgba(0,0,0,1) 100%);">
                         <h2 class="title pb-2 px-3 text-white fs-1 fw-bolder">{{ $bigPost->title }}</h2>

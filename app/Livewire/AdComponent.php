@@ -8,8 +8,10 @@ use Livewire\Component;
 class AdComponent extends Component
 {
     public $ad;
-    public function mount($id=1)
+    public $height;
+    public function mount($id=1, $height=null)
     {
+        $this->height = $height;
         $id = $id ?? 1;
 
         $this->ad = $ad = Ad::find($id);

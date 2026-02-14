@@ -99,6 +99,9 @@
             {{-- <div class="ad_area">
                 <img src="{{ asset('website/img/ad/728x90.png') }}" alt="">
             </div> --}}
+
+            @livewire('ad-component', ['id' => 19,"height" => "100px"], key('ad-19'))
+
             <div class="top_bar">
 
                 <div class="logo">
@@ -572,19 +575,19 @@
     <main id="main_area">
         <div class="wrapper">
 
-            @livewire('ad-component', ['id' => 18], key('ad-18'))
+            @livewire('ad-component', ['id' => 18,"height" => "100px"], key('ad-18'))
         </div>
         @yield('content')
         <div class="wrapper">
 
-            @livewire('ad-component', ['id' => 17], key('ad-17'))
+            @livewire('ad-component', ['id' => 17,"height" => "100px"], key('ad-17'))
         </div>
     </main>
-    <footer id="footer_area" style="background: #022c6f;">
-        <div class="row wrapper py-4 gap-0 gap-md-0">
-            <div class="col-12 col-md-4">
-                <h3 class="text-white mb-3">{{ setting('general.site_title', 'News Portal') }}</h3>
-                <p class="text-white mb-2">
+    <footer id="footer_area" class="footer-2" style="background: #022c6f;">
+        <div class="row wrapper py-4 gap-0 gap-md-0 top-footer">
+            <div class="col-12 col-md-4 footer-card">
+                <h3 class=" mb-3 footer-card-title">{{ setting('general.site_title', 'News Portal') }}</h3>
+                <p class=" mb-2 footer-card-text">
 
                     {!! nl2br(e(setting('general.footer_text'))) !!}
 
@@ -594,8 +597,8 @@
                     <ul class="navbar-nav d-flex flex-row gap-2 justify-content-start align-items-center">
                         @if (setting('social.facebook'))
                             <li class="nav-item">
-                                <a class="nav-link text-white border border-color-white d-block  px-2 py-1 rounded shadow-sm "
-                                    style="width: fit-content; background-color: #022358;" target="_blank"
+                                <a class="nav-link"
+                                    style="" target="_blank"
                                     href="{{ setting('social.facebook') }}"> <i class="fa-brands fa-facebook"></i>
                                 </a>
                             </li>
@@ -603,8 +606,8 @@
                         @if (setting('social.instagram'))
                             <li class="nav-item">
                                 <a target="_blank"
-                                    class="nav-link text-white border border-color-white d-block  px-2 py-1 rounded shadow-sm"
-                                    style="width: fit-content; background-color: #022358;"
+                                    class="nav-link "
+                                    style=""
                                     href="{{ setting('social.instagram') }}"> <i class="fa-brands fa-instagram"></i>
                                 </a>
                             </li>
@@ -612,8 +615,8 @@
                         @if (setting('social.youtube'))
                             <li class="nav-item">
                                 <a target="_blank"
-                                    class="nav-link text-white border border-color-white d-block  px-2 py-1 rounded shadow-sm"
-                                    style="width: fit-content; background-color: #022358;"
+                                    class="nav-link "
+                                    style=""
                                     href="{{ setting('social.youtube') }}"> <i class="fa-brands fa-youtube"></i>
                                 </a>
                             </li>
@@ -621,8 +624,8 @@
                         @if (setting('social.twitter'))
                             <li class="nav-item">
                                 <a target="_blank"
-                                    class="nav-link text-white border border-color-white d-block  px-2 py-1 rounded shadow-sm"
-                                    style="width: fit-content; background-color: #022358;"
+                                    class="nav-link "
+                                    style=""
                                     href="{{ setting('social.twitter') }}"> <i class="fa-solid fa-x"></i>
                                 </a>
                             </li>
@@ -630,8 +633,8 @@
                         @if (setting('social.linkedin'))
                             <li class="nav-item">
                                 <a target="_blank"
-                                    class="nav-link text-white border border-color-white d-block  px-2 py-1 rounded shadow-sm"
-                                    style="width: fit-content; background-color: #022358;"
+                                    class="nav-link "
+                                    style=""
                                     href="{{ setting('social.linkedin') }}"> <i class="fa-brands fa-linkedin"></i>
                                 </a>
                             </li>
@@ -639,8 +642,8 @@
                         @if (setting('social.tiktok'))
                             <li class="nav-item">
                                 <a target="_blank"
-                                    class="nav-link text-white border border-color-white d-block  px-2 py-1 rounded shadow-sm"
-                                    style="width: fit-content; background-color: #022358;"
+                                    class="nav-link "
+                                    style=""
                                     href="{{ setting('social.tiktok') }}"> <i class="fa-brands fa-tiktok"></i>
                                 </a>
                             </li>
@@ -648,39 +651,63 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
-                <h3 class="text-white mb-3">Quick Links</h3>
-                <ul class="navbar-nav d-flex flex-column flex-wrap gap-0">
+            <div class="col-12 col-md-4 footer-card quick-link">
+                <h3 class="mb-3 footer-card-title underline text-decoration-underline">Quick Links</h3>
+                <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link text-white m-0" href="{{ route('home') }}"><i
-                                class="fa-solid fa-arrow-right"></i> Home</a>
+                        <a class="nav-link " href="{{ route('home') }}"><i
+                                class="fa-solid fa-arrow-right-long"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white m-0" href="#"><i class="fa-solid fa-arrow-right"></i>
+                        <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
                             About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white m-0" href="#"><i class="fa-solid fa-arrow-right"></i>
+                        <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
+                            Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('home') }}"><i
+                                class="fa-solid fa-arrow-right-long"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
+                            About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
+                            Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('home') }}"><i
+                                class="fa-solid fa-arrow-right-long"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
+                            About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
                             Contact</a>
                     </li>
                 </ul>
             </div>
-            <div class="col-12 col-md-4">
-                <h3 class="text-white mb-3">Contact Us</h3>
-                <ul class="navbar-nav d-flex flex-column flex-wrap gap-2">
+            <div class="col-12 col-md-4 footer-card contact">
+                <h3 class="text-white mb-3 footer-card-title underline text-decoration-underline">Contact Us</h3>
+                <ul class="navbar-nav d-flex flex-column flex-wrap gap-2 ">
                     @if (
                         (setting('general.phone') && !empty(setting('general.phone'))) ||
                             (setting('general.secondary_phone') && !empty(setting('general.secondary_phone'))))
-                        <li class="d-flex flex-row align-items-center justify-content-start  text-white"
+                        <li class="contact-item"
                             href="tel:{{ setting('general.phone') }}">
                             <span
-                                class="me-2  text-white border border-color-white d-flex justify-content-center align-items-center  px-2 py-1 rounded shadow-sm text-center "
-                                style="width: 60px; height: 60px; background-color: #022358; font-size: 25px;">
+                                class="icon "
+                                >
                                 <i class="fa-solid fa-phone"></i>
                             </span>
                             <div>
-                                <h5>Call Us 24/7</h5>
-                                <p class="" style="color: rgb(212, 212, 212)">
+                                <h5 class="title">Call Us 24/7</h5>
+                                <p class="text">
                                     {{ setting('general.phone') }}<br>
                                     {{ setting('general.secondary_phone') }}
                                 </p>
@@ -689,17 +716,16 @@
                         </li>
                     @endif
                     @if (setting('general.email') && !empty(setting('general.email')))
-                        <li class=" d-flex flex-row align-items-center justify-content-start text-white"
+                        <li class="contact-item "
                             href="mailto:{{ setting('general.email') }}">
                             <span
-                                class="me-2 text-white border border-color-white d-flex justify-content-center align-items-center  px-2 py-1 rounded shadow-sm text-center "
-                                style="width: 60px; height: 60px; background-color: #022358; font-size: 25px;">
+                                class="icon">
 
                                 <i class="fa-solid fa-envelope"></i>
                             </span>
                             <div>
-                                <h5 class="">Work with Us</h5>
-                                <p class="" style="color: rgb(212, 212, 212)">
+                                <h5 class="title">Work with Us</h5>
+                                <p class="text" >
                                     {{ setting('general.email') }}
                                 </p>
                             </div>
@@ -708,17 +734,14 @@
                     @endif
 
                     @if (setting('general.address') && !empty(setting('general.address')))
-                        <li class="nav-link d-flex flex-row align-items-center justify-content-start  text-white"
-                            >
-                            <div
-                                class="me-2 text-white border border-color-white d-flex justify-content-center align-items-center  px-2 py-1 rounded shadow-sm text-center "
-                                style="width: 60px !important; min-width: 60px; height: 60px; background-color: #022358; font-size: 25px;">
+                        <li class="contact-item">
+                            <span class="icon">
 
                                 <i class="fa-solid fa-location-dot"></i>
-                            </div>
+                            </span>
                             <div style="flex-grow: auto;">
-                                <h5>Corporate Office</h5>
-                                <p class="" style="color: rgb(212, 212, 212)">
+                                <h5 class="title">Corporate Office</h5>
+                                <p class="text" style="color: rgb(212, 212, 212)">
 
                                     {{ setting('general.address') }}
                                 </p>
@@ -728,10 +751,10 @@
                 </ul>
             </div>
         </div>
-        <hr>
-        <div class="wrapper py-3">
-            <h2 style="font-size: 14px;font-weight: 400;color: #ffffffab; text-align:center;">© 2026. All right
-                Reserved Developed By <a href="https://bento.me/alimuzahid " style="font-weight: 600;color: #fff">Ali
+        <hr class="text-white">
+        <div class="wrapper py-3 bottom-footer">
+            <h2 style="font-size: 14px;font-weight: 400;color: #ffffffab; text-align:left;">© 2026. All right
+                Reserved Developed By <a href="https://bento.me/alimuzahid " style="font-weight: 400;color: #fff">Ali
                     Muzahid</a></h2>
         </div>
 

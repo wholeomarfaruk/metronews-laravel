@@ -17,6 +17,7 @@
         .newsticker .heading {
             font-size: 18px;
         }
+
         .newsticker .heading-box {
             background-color: red;
             width: fit-content;
@@ -51,6 +52,7 @@
             }
         }
     </style>
+    {{-- NewsTracker --}}
     <section class="newsticker">
         <div class="d-flex  overflow-hidden align-items-center border-bottom">
             <div class=" heading-box bg-opacity-50" style="">
@@ -86,7 +88,7 @@
                                             <div class="card mb-3 p-2 rounded ">
                                                 <div class="row flex-column g-0">
                                                     <div class="col-auto">
-                                                        <img style="height: 100%; width: cover;"
+                                                        <img style="height: 100%;  width: 100%; object-fit: cover; max-height: 366px; "
                                                             src="{{ asset('website/img/thumbnails/featured_img.jpg') }}"
                                                             class="img-fluid rounded-start" alt="...">
                                                     </div>
@@ -109,7 +111,7 @@
                                             <div class="card mb-3 p-2 rounded ">
                                                 <div class="row flex-column g-0">
                                                     <div class="col-auto">
-                                                        <img style="height: 100%; width: cover;"
+                                                        <img style="height: 100%;  width: 100%; object-fit: cover; max-height: 366px; "
                                                             src="{{ $featuredPost->featured_image }}"
                                                             class="img-fluid rounded-start" alt="...">
                                                     </div>
@@ -172,7 +174,7 @@
                                                     <div class="card mb-3 p-2 rounded h-100">
                                                         <div class="row flex-column g-0">
                                                             <div class="col-auto">
-                                                                <img style="height: 100%; width: cover;"
+                                                                <img style="height: 100%;  width: 100%; object-fit: cover; max-height: 160px; "
                                                                     src="{{ $banijjo->featured_image }}"
                                                                     class="img-fluid rounded-start" alt="...">
                                                             </div>
@@ -341,36 +343,34 @@
                                                 </a>
                                             </div>
                                         </div>
-                                          @php
-                                                $oporad = $categories->find(12)->posts()->latest()->first();
-                                            @endphp
+                                        @php
+                                            $oporad = $categories->find(12)->posts()->latest()->first();
+                                        @endphp
                                         @if ($oporad)
+                                            <div class="col-lg-12 col-6">
 
+                                                <div class="card">
+                                                    <a
+                                                        href="{{ route('post.show', ['category' => $oporad->category->slug, 'slug' => $oporad->slug]) }}">
+                                                        <div class="row g-0 align-items-center">
+                                                            <div class="col-md-5">
+                                                                <img style="object-fit: cover;"
+                                                                    src="{{ $oporad->featured_image }}"
+                                                                    class="img-fluid rounded-start" alt="...">
+                                                            </div>
+                                                            <div class="col-md-7 m-0 p-0">
+                                                                <div class="card-body m-0 p-0">
+                                                                    <h3 class="card-title secondpost-title ms-3">
+                                                                        {{ $oporad->title }}
+                                                                    </h3>
 
-                                        <div class="col-lg-12 col-6">
-
-                                            <div class="card">
-                                                <a
-                                                    href="{{ route('post.show', ['category' => $oporad->category->slug, 'slug' => $oporad->slug]) }}">
-                                                    <div class="row g-0 align-items-center">
-                                                        <div class="col-md-5">
-                                                            <img style="object-fit: cover;"
-                                                                src="{{ $oporad->featured_image }}"
-                                                                class="img-fluid rounded-start" alt="...">
-                                                        </div>
-                                                        <div class="col-md-7 m-0 p-0">
-                                                            <div class="card-body m-0 p-0">
-                                                                <h3 class="card-title secondpost-title ms-3">
-                                                                    {{ $oporad->title }}
-                                                                </h3>
-
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </a>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
- @endif
+                                        @endif
                                     </div>
 
                                 </div>
@@ -384,7 +384,7 @@
                                 <p class="fw-bold  col-5" style="font-size: 18px;">Follow Us</p>
                                 <div class=" col-7 d-flex justify-content-center gap-3 align-items-center">
                                     <!-- Facebook -->
-                                    <a href="{{ setting('social.facebook','#') }}" target="_blank"
+                                    <a href="{{ setting('social.facebook', '#') }}" target="_blank"
                                         class="btn-hover-effect-1 social-icon facebook">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48"
                                             height="48" viewBox="0 0 48 48">
@@ -397,7 +397,8 @@
                                         </svg>
                                     </a>
                                     <!-- YouTube -->
-                                    <a href="{{ setting('social.youtube','#') }}" target="_blank" class="btn-hover-effect-1 social-icon youtube">
+                                    <a href="{{ setting('social.youtube', '#') }}" target="_blank"
+                                        class="btn-hover-effect-1 social-icon youtube">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48"
                                             height="48" viewBox="0 0 48 48">
                                             <path fill="#FF3D00"
@@ -429,11 +430,13 @@
 
             @livewire('ad-component', ['id' => 8], key('ad-8'))
         </div>
+        @if ($videos)
+            <x-video-section-carousel :videos="$videos ?? collect()" />
+        @endif
         @if ($categories?->find(7)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(7)->posts()->latest()->get() ?? collect()" :style="1" />
         @endif
         <div class="wrapper">
-
             @livewire('ad-component', ['id' => 9], key('ad-9'))
         </div>
 
@@ -448,38 +451,41 @@
         @if ($categories?->find(8)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(8)->posts()->latest()->get() ?? collect()" :style="3" />
         @endif
+
         <div class="wrapper">
 
             @livewire('ad-component', ['id' => 11], key('ad-11'))
         </div>
-
-        @if ($categories?->find(5)?->posts()?->latest()?->get())
-            <x-post-section :newsPosts="$categories->find(5)->posts()->latest()->get() ?? collect()" :style="5" />
+        @if ($categories?->find(9)?->posts()?->latest()?->get())
+            <x-post-section :newsPosts="$categories->find(6)->posts()->latest()->get() ?? collect()" :style="2" />
         @endif
+
+
         <div class="wrapper">
 
             @livewire('ad-component', ['id' => 12], key('ad-12'))
         </div>
+        @if ($categories?->find(5)?->posts()?->latest()?->get())
+            <x-post-section :newsPosts="$categories->find(5)->posts()->latest()->get() ?? collect()" :style="5" />
+        @endif
 
+        <div class="wrapper">
+            @livewire('ad-component', ['id' => 13], key('ad-13'))
+        </div>
         @if ($categories?->find(3)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(3)->posts()->latest()->get() ?? collect()" :style="1" />
         @endif
-        <div class="wrapper">
 
-            @livewire('ad-component', ['id' => 13], key('ad-13'))
-        </div>
 
-        @if ($videos)
-            <x-video-section-carousel :videos="$videos ?? collect()" />
-        @endif
-        <div class="wrapper">
+
+        {{-- <div class="wrapper">
 
             @livewire('ad-component', ['id' => 14], key('ad-14'))
         </div>
         @if ($categories?->find(10)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(10)->posts()->latest()->get() ?? collect()" :style="5" />
-        @endif
-        <div class="wrapper">
+        @endif --}}
+        {{-- <div class="wrapper">
 
             @livewire('ad-component', ['id' => 15], key('ad-15'))
         </div>
@@ -492,7 +498,7 @@
         </div>
         @if ($categories?->find(4)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(4)->posts()->latest()->get() ?? collect()" :style="3" />
-        @endif
+        @endif --}}
     @endif
 
 @endsection
