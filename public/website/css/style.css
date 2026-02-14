@@ -711,10 +711,11 @@ input[type=search] {
   color: #fff;
 }
 .footer-2 .top-footer .footer-card.contact ul li.contact-item {
-  display: flex;
+  display: grid;
   gap: 10px;
   justify-content: start;
   align-items: start;
+  grid-template-columns: 11% auto;
 }
 .footer-2 .top-footer .footer-card.contact ul li.contact-item .icon {
   width: 46px;

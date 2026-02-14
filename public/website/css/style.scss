@@ -487,6 +487,7 @@ input[type="search"] {
                         font-size: 1rem;
                         background-color: transparent !important;
                         padding: 3px 10px !important;
+
                         @media (max-width:992px) {
                             font-size: 0.8rem;
                         }
@@ -877,14 +878,17 @@ input[type="search"] {
                     }
                 }
             }
-            &.contact{
-                ul{
-                    li.contact-item{
-                        display: flex;
+
+            &.contact {
+                ul {
+                    li.contact-item {
+                        display: grid;
                         gap: 10px;
                         justify-content: start;
                         align-items: start;
-                        .icon{
+                        grid-template-columns: 11% auto;
+
+                        .icon {
                             width: 46px;
                             height: 46px;
                             text-align: center;
@@ -900,13 +904,15 @@ input[type="search"] {
                             justify-content: center;
                             align-items: center;
                         }
-                        .title{
+
+                        .title {
                             font-size: 1rem;
                             color: #fff;
                             transition: all ease-in-out 0.3s;
                             font-family: 'montserrat', sans-serif;
                         }
-                        .text{
+
+                        .text {
                             font-size: 1rem;
                             color: #b4b6b9;
                             transition: all ease-in-out 0.3s;

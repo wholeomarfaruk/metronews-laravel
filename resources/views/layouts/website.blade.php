@@ -700,7 +700,7 @@
                             <div>
                                 <h5 class="title">Call Us 24/7</h5>
                                 <p class="text">
-                                    {{ setting('general.phone') }}<br>
+                                    {{ setting('general.phone') }},
                                     {{ setting('general.secondary_phone') }}
                                 </p>
                             </div>
