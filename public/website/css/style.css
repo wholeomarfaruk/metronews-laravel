@@ -640,6 +640,9 @@ input[type=search] {
   font-family: "Montserrat", sans-serif, "SolaimanLipi";
   font-weight: 700;
 }
+.footer-2 .top-footer .footer-card .footer-card-title:first-child {
+  font-size: 26px;
+}
 .footer-2 .top-footer .footer-card .footer-card-text {
   font-size: 1rem;
   color: #b4b6b9;

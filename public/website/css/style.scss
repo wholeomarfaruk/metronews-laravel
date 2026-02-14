@@ -786,6 +786,9 @@ input[type="search"] {
                 color: #fff;
                 font-family: 'Montserrat', sans-serif, 'SolaimanLipi';
                 font-weight: 700;
+                &:first-child{
+                    font-size: 26px;
+                }
             }
 
             .footer-card-text {

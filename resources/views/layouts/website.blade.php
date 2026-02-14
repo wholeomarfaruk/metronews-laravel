@@ -647,7 +647,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-4 footer-card quick-link">
-                <h3 class="mb-3 footer-card-title underline text-decoration-underline"> গুরুত্বপূর্ণ লিংকসমূহ</h3>
+                <h3 class="mb-3 footer-card-title"> গুরুত্বপূর্ণ লিংকসমূহ</h3>
                 <ul class="navbar-nav ">
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('home') }}"><i
@@ -688,7 +688,7 @@
                 </ul>
             </div>
             <div class="col-12 col-md-4 footer-card contact">
-                <h3 class="text-white mb-3 footer-card-title underline text-decoration-underline">যোগাযোগ করুন</h3>
+                <h3 class="text-white mb-3 footer-card-title">যোগাযোগ করুন</h3>
                 <ul class="navbar-nav d-flex flex-column flex-wrap gap-2 ">
                     @if (
                         (setting('general.phone') && !empty(setting('general.phone'))) ||
