@@ -433,48 +433,48 @@
         @if ($videos)
             <x-video-section-carousel :videos="$videos ?? collect()" />
         @endif
-        @if ($categories?->find(7)?->posts()?->latest()?->get())
+        @if ($categories?->find(6)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(7)->posts()->latest()->get() ?? collect()" :style="1" />
         @endif
         <div class="wrapper">
-            @livewire('ad-component', ['id' => 9], key('ad-9'))
+            @livewire('ad-component', ['id' => 9,"height" => "80px"], key('ad-9'))
         </div>
 
-        @if ($categories?->find(9)?->posts()?->latest()?->get())
+        @if ($categories?->find(8)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(9)->posts()->latest()->get() ?? collect()" :style="2" />
         @endif
         <div class="wrapper">
 
-            @livewire('ad-component', ['id' => 10], key('ad-10'))
+            @livewire('ad-component', ['id' => 10,"height" => "80px"], key('ad-10'))
         </div>
 
-        @if ($categories?->find(8)?->posts()?->latest()?->get())
+        @if ($categories?->find(5)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(8)->posts()->latest()->get() ?? collect()" :style="3" />
         @endif
 
         <div class="wrapper">
 
-            @livewire('ad-component', ['id' => 11], key('ad-11'))
+            @livewire('ad-component', ['id' => 11,"height" => "80px"], key('ad-11'))
         </div>
-        @if ($categories?->find(9)?->posts()?->latest()?->get())
+        @if ($categories?->find(4)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(6)->posts()->latest()->get() ?? collect()" :style="2" />
         @endif
 
 
         <div class="wrapper">
 
-            @livewire('ad-component', ['id' => 12], key('ad-12'))
+            @livewire('ad-component', ['id' => 12,"height" => "80px"], key('ad-12'))
         </div>
-        @if ($categories?->find(5)?->posts()?->latest()?->get())
+        @if ($categories?->find(2)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(5)->posts()->latest()->get() ?? collect()" :style="5" />
         @endif
 
-        <div class="wrapper">
+        {{-- <div class="wrapper">
             @livewire('ad-component', ['id' => 13], key('ad-13'))
         </div>
         @if ($categories?->find(3)?->posts()?->latest()?->get())
             <x-post-section :newsPosts="$categories->find(3)->posts()->latest()->get() ?? collect()" :style="1" />
-        @endif
+        @endif --}}
 
 
 

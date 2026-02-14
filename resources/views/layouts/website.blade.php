@@ -102,7 +102,7 @@
 
             @livewire('ad-component', ['id' => 19,"height" => "100px"], key('ad-19'))
 
-            <div class="top_bar">
+            <div class="top_bar border-top border-secondary">
 
                 <div class="logo">
                     <a href="/">
@@ -575,12 +575,12 @@
     <main id="main_area">
         <div class="wrapper">
 
-            @livewire('ad-component', ['id' => 18,"height" => "100px"], key('ad-18'))
+            @livewire('ad-component', ['id' => 18,"height" => "80px"], key('ad-18'))
         </div>
         @yield('content')
         <div class="wrapper">
 
-            @livewire('ad-component', ['id' => 17,"height" => "100px"], key('ad-17'))
+            @livewire('ad-component', ['id' => 17,"height" => "80px"], key('ad-17'))
         </div>
     </main>
     <footer id="footer_area" class="footer-2" style="background: #022c6f;">
