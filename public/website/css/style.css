@@ -425,6 +425,7 @@ input[type=search] {
 #header_area .menu_bar .menu-area .tools .langswitch-box #lang-switcher {
   font-size: 1rem;
   background-color: transparent !important;
+  padding: 3px 10px !important;
 }
 @media (max-width: 992px) {
   #header_area .menu_bar .menu-area .tools .langswitch-box #lang-switcher {
