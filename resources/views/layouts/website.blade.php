@@ -688,7 +688,7 @@
                 </ul>
             </div>
             <div class="col-12 col-md-4 footer-card contact">
-                <h3 class="text-white mb-3 footer-card-title underline text-decoration-underline">Contact Us</h3>
+                <h3 class="text-white mb-3 footer-card-title underline text-decoration-underline">যোগাযোগ করুন</h3>
                 <ul class="navbar-nav d-flex flex-column flex-wrap gap-2 ">
                     @if (
                         (setting('general.phone') && !empty(setting('general.phone'))) ||
@@ -698,7 +698,7 @@
                                 <i class="fa-solid fa-phone"></i>
                             </span>
                             <div>
-                                <h5 class="title">Call Us 24/7</h5>
+                                <h5 class="title">জরুরী প্রয়োজনে</h5>
                                 <p class="text">
                                     {{ setting('general.phone') }},
                                     {{ setting('general.secondary_phone') }}
@@ -714,7 +714,7 @@
                                 <i class="fa-solid fa-envelope"></i>
                             </span>
                             <div>
-                                <h5 class="title">Work with Us</h5>
+                                <h5 class="title">ইমেইল ঠিকানা</h5>
                                 <p class="text">
                                     {{ setting('general.email') }}
                                 </p>
@@ -730,7 +730,7 @@
                                 <i class="fa-solid fa-location-dot"></i>
                             </span>
                             <div style="flex-grow: auto;">
-                                <h5 class="title">Corporate Office</h5>
+                                <h5 class="title">কর্পোরেট অফিস</h5>
                                 <p class="text" style="color: rgb(212, 212, 212)">
 
                                     {{ setting('general.address') }}
