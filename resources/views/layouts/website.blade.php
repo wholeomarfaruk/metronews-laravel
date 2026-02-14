@@ -283,7 +283,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="langswitch-box">
+                        <div class="langswitch-box btn">
                             <form action="">
                                 <fieldset>
                                     <select class="form-control " name="" id="lang-switcher">
@@ -293,7 +293,7 @@
                                 </fieldset>
                             </form>
                         </div>
-                        <div class="btn-group">
+                        <div class="btn-group ">
 
                             {{-- <a href="#" class="btn border border-light-subtle"> <i
                                     class="fa-solid fa-newspaper"></i> ই-পেপার
@@ -301,7 +301,7 @@
                         </div>
                         <div class="menu-hamburger">
 
-                            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            <button class="navbar-toggler btn" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#main-canvas" aria-controls="main-canvas">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
