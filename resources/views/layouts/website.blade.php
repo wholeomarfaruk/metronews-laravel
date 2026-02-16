@@ -4,35 +4,35 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {{-- Default meta --}}
     <title>
         @hasSection('meta_title')
             @yield('meta_title') |
         @endif
         {{ setting('general.site_title') }} {{ setting('general.site_tagline') }}
     </title>
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('meta_og_title', setting('general.site_title') . ' ' . setting('general.site_tagline'))">
-    <meta name="twitter:description"
-        content="Get the latest breaking news, sports updates, politics, and trending stories on Favourite Range News.">
-    <meta name="twitter:image" content="@yield('meta_twitter_image', asset('website/img/logo/logo.jpeg'))">
 
-    <link rel="canonical" href="{{ url()->current() }}">
-    {{-- Default meta --}}
+    <meta name="description" content="@yield('meta_description', 'Get the latest breaking news, sports updates, politics, and trending stories on Metro News.')">
 
-    <meta name="description" content="@yield('meta_description', 'Get the latest breaking news, sports updates, politics, and trending stories on Metro News. Stay informed with real-time headlines.')">
+    <!-- Open Graph (Facebook) -->
     <meta property="og:title" content="@yield('meta_og_title', setting('general.site_title') . ' ' . setting('general.site_tagline'))">
+
     <meta property="og:description" content="@yield('meta_og_description', 'Get the latest breaking news, sports updates, politics, and trending stories on Metro News.')">
+
     <meta property="og:image" content="@yield('meta_og_image', asset('website/img/logo/logo.jpeg'))">
-    <meta property="og:type" content="website">
+
+    <meta property="og:url" content="{{ url()->current() }}">
+
+    <meta property="og:type" content="article">
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('meta_twitter_title', setting('general.site_title') . ' ' . setting('general.site_tagline'))">
-    <meta name="twitter:description" content="@yield('meta_twitter_description', 'Get the latest breaking news, sports updates, politics, and trending stories on Metro News.')">
-    <meta name="twitter:image" content="@yield('meta_twitter_image', asset(setting('general.logo')))">
-    <link rel="canonical" href="@yield('meta_canonical', url()->current())">
 
+    <meta name="twitter:description" content="@yield('meta_twitter_description', 'Get the latest breaking news, sports updates, politics, and trending stories on Metro News.')">
+
+    <meta name="twitter:image" content="@yield('meta_twitter_image', asset(setting('general.logo')))">
+
+    <link rel="canonical" href="{{ url()->current() }}">
 
     <link rel="shortcut icon" href="{{ asset(setting('general.favicon')) }}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -157,8 +157,7 @@
                     </div>
                     <div class="e-paper">
 
-                        <a href="#" class="btn border border-light-subtle"> <i
-                                class="fa-solid fa-newspaper"></i>
+                        <a href="#" class="btn border border-light-subtle"> <i class="fa-solid fa-newspaper"></i>
                             ই-পেপার
                         </a>
                     </div>
@@ -650,8 +649,8 @@
                 <h3 class="mb-3 footer-card-title"> গুরুত্বপূর্ণ লিংকসমূহ</h3>
                 <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('home') }}"><i
-                                class="fa-solid fa-arrow-right-long"></i> মেট্রো নিউজ</a>
+                        <a class="nav-link " href="{{ route('home') }}"><i class="fa-solid fa-arrow-right-long"></i>
+                            মেট্রো নিউজ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
