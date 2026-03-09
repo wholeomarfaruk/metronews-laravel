@@ -776,8 +776,8 @@ input[type="search"] {
 }
 
 .footer-2 {
-    padding-top: 100px;
-    padding-bottom: 40px;
+    padding-top: 25px;
+    padding-bottom: 10px;
 
     .top-footer {
         .footer-card {
@@ -795,6 +795,11 @@ input[type="search"] {
                 font-size: 1rem;
                 color: #b4b6b9;
                 font-family: 'poppins', sans-serif, 'SolaimanLipi';
+                width: 90%;
+
+                @media  (max-width:992px) {
+                    width: 100%;
+                }
             }
 
             .social {
@@ -886,7 +891,7 @@ input[type="search"] {
                 ul {
                     li.contact-item {
                         display: grid;
-                        gap: 10px;
+                        gap: 20px;
                         justify-content: start;
                         align-items: start;
                         grid-template-columns: 11% auto;
@@ -927,5 +932,9 @@ input[type="search"] {
         }
     }
 
-    .bottom-footer {}
+    .bottom-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

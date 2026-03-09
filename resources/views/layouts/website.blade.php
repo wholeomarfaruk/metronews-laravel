@@ -594,7 +594,7 @@
                 <p class=" mb-2 footer-card-text">
                     <span>সম্পাদক ও প্রকাশক</span><br>
                     <span class="text-white">মোঃ মিজানুর রাহমান</span>
-                    <span class="d-block mt-2">
+                    <span class="d-block mt-2 text">
 
 
                         {!! nl2br(e(setting('general.footer_text'))) !!}
@@ -755,8 +755,9 @@
         <hr class="text-white">
         <div class="wrapper py-3 bottom-footer">
             <h2 style="font-size: 14px;font-weight: 400;color: #ffffffab; text-align:left;">© 2026. All right
-                Reserved Developed By <a href="https://bento.me/alimuzahid " style="font-weight: 400;color: #fff">Ali
+                Reserved Developed By <a href="https://www.facebook.com/alimuzahid.dev" style="font-weight: 400;color: #fff">Ali
                     Muzahid</a></h2>
+            <p style="font-size: 14px;font-weight: 400;color: #ffffffab; text-align:right;">ওয়েবসাইটের কোনো লেখা, ছবি, ভিডিও অনুমতি ছাড়া ব্যবহার বেআইনি।</p>
         </div>
 
     </footer>
