@@ -292,13 +292,13 @@ input[type=search] {
 }
 #header_area .menu_bar {
   background-color: #fff;
+  border-top: 1px solid #ddd;
 }
 #header_area .menu_bar .logo {
   max-width: 150px;
   display: none;
 }
 #header_area .menu_bar .menu-area {
-  border-top: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
   align-items: center;

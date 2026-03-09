@@ -146,8 +146,8 @@
         </div>
 
         <div id="menubar" class="menu_bar   pt-1 ">
-            <nav class="px-2 navbar  navbar-expand-lg navbar-light p-0">
-                <div class="container-fluid wrapper menu-area">
+            <nav class=" navbar  navbar-expand-lg navbar-light p-0">
+                <div class="container-fluid wrapper menu-area px-2">
                     <!-- Brand -->
                     <div class="logo" style="max-width: 75px !important;">
                         <a href="/">

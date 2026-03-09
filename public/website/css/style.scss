@@ -318,14 +318,14 @@ input[type="search"] {
 
     .menu_bar {
         background-color: #fff;
-
+border-top: 1px solid #ddd;
         .logo {
             max-width: 150px;
             display: none;
         }
 
         .menu-area {
-            border-top: 1px solid #ddd;
+            
             display: flex;
             justify-content: space-between;
             align-items: center;
