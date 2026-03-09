@@ -87,7 +87,7 @@
                                         <a href="#">
                                             <div class="card mb-3 p-2 rounded ">
                                                 <div class="row flex-column g-0">
-                                                    <div class="col-auto">
+                                                    <div class="">
                                                         <img style="height: 100%;  width: 100%; object-fit: cover; max-height: 366px; "
                                                             src="{{ asset('website/img/thumbnails/featured_img.jpg') }}"
                                                             class="img-fluid rounded-start" alt="...">
