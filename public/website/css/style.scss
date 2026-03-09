@@ -862,6 +862,7 @@ input[type="search"] {
                     /* IMPORTANT */
                     gap: 1px;
 
+
                     li {
                         display: inline-block;
 
@@ -871,7 +872,7 @@ input[type="search"] {
                             color: #b4b6b9;
                             transition: all ease-in-out 0.3s;
                             font-family: 'poppins', sans-serif;
-
+                            padding:4px 0;
                             &:hover {
                                 transition: all ease-in-out 0.3s;
                                 color: #fff;
