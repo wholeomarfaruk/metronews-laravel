@@ -51,7 +51,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Include stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.0.4') }}">
+    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.0.5') }}">
     @stack('styles')
 </head>
 
@@ -597,8 +597,8 @@
                     <span class="d-block mt-2">
 
 
-                    {!! nl2br(e(setting('general.footer_text'))) !!}
-   </span>
+                        {!! nl2br(e(setting('general.footer_text'))) !!}
+                    </span>
                 </p>
                 <div class="social">
                     {{-- <h6>সোশ্যাল মিডিয়া</h6> --}}
@@ -659,7 +659,7 @@
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
                             গোপনীয়তার নীতি</a>
                     </li>
-                  
+
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
                             শর্তাবলি</a>
@@ -672,7 +672,7 @@
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
                             বিজ্ঞাপন</a>
                     </li>
-                      <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
                             ছুটির তালিকা</a>
                     </li>

@@ -856,7 +856,7 @@ input[type="search"] {
                     display: grid;
 
                     grid-template-columns: repeat(2, auto);
-                    grid-template-rows: repeat(5, auto);
+                    grid-template-rows: repeat(6, auto);
                     /* number of rows */
                     grid-auto-flow: column;
                     /* IMPORTANT */
@@ -865,7 +865,6 @@ input[type="search"] {
 
                     li {
                         display: inline-block;
-
 
                         a {
                             font-size: 1rem;
