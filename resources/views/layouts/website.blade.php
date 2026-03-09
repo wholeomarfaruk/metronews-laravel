@@ -51,7 +51,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Include stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.0.8') }}">
+    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.0.9') }}">
     @stack('styles')
 </head>
 
@@ -145,7 +145,7 @@
             </div>
         </div>
 
-        <div id="menubar" class="menu_bar wrapper  pt-1 pb-2">
+        <div id="menubar" class="menu_bar wrapper  pt-1 ">
             <nav class="navbar navbar-expand-lg navbar-light p-0">
                 <div class="container-fluid menu-area">
                     <!-- Brand -->
@@ -174,7 +174,7 @@
                         $mainmenus = \App\Models\MainMenu::orderBy('sort', 'asc')->get();
                     @endphp
                     <!-- Navbar links -->
-                    <div class="px-3 nav collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class=" nav collapse navbar-collapse" id="navbarSupportedContent">
 
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
