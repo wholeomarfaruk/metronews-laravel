@@ -451,7 +451,6 @@ input[type=search] {
 #header_area .menu_bar.sticky {
   box-shadow: 0 0px 15px rgba(73, 72, 72, 0.5607843137);
   padding-bottom: 0.3rem;
-  max-width: 100%;
 }
 #header_area .menu_bar.sticky .logo {
   display: block;
