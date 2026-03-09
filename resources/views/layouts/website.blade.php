@@ -577,9 +577,11 @@
     </header>
 
     <main id="main_area">
-        <div class="wrapper">
+        <div class="wrapper px-3">
 
-            @livewire('ad-component', ['id' => 18, 'height' => '80px'], key('ad-18'))
+
+                @livewire('ad-component', ['id' => 18, 'height' => '80px'], key('ad-18'))
+            
         </div>
         @yield('content')
         <div class="wrapper">
