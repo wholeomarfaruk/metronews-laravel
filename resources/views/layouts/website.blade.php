@@ -51,7 +51,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Include stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.1.0') }}">
+    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.1.1') }}">
     @stack('styles')
 </head>
 
@@ -147,7 +147,7 @@
 
         <div id="menubar" class="menu_bar   pt-1 ">
             <nav class=" navbar  navbar-expand-lg navbar-light p-0">
-                <div class="container-fluid wrapper menu-area px-4">
+                <div class="container-fluid wrapper menu-area">
                     <!-- Brand -->
                     <div class="logo" style="max-width: 75px !important;">
                         <a href="/">
