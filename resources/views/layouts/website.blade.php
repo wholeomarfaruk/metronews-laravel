@@ -648,7 +648,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-12 col-md-4 footer-card quick-link">
+            <div class="col-12 col-md-4 footer-card quick-link mt-md-5">
                 <h3 class="mb-3 footer-card-title"> গুরুত্বপূর্ণ লিংকসমূহ</h3>
                 <ul class="navbar-nav ">
                     <li class="nav-item">
@@ -698,7 +698,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-12 col-md-4 footer-card contact">
+            <div class="col-12 col-md-4 footer-card contact mt-md-5">
                 <h3 class="text-white mb-3 footer-card-title">যোগাযোগ করুন</h3>
                 <ul class="navbar-nav d-flex flex-column flex-wrap gap-2 ">
                     @if (
