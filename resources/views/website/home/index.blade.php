@@ -42,12 +42,12 @@
 
             .newsticker .heading-box,
             .newsticker .scrolling {
-                height: 18px;
+                height: 35px;
             }
 
             .newsticker .heading-box {
 
-                min-width: 120px;
+                min-width: 100px;
 
             }
         }
