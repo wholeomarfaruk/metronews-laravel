@@ -697,6 +697,11 @@ input[type=search] {
   transform: scale(1.1);
   transition: all ease-in-out 0.3s;
 }
+@media (max-width: 992px) {
+  .footer-2 .top-footer .footer-card.quick-link {
+    margin-top: 45px;
+  }
+}
 .footer-2 .top-footer .footer-card.quick-link ul {
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -719,6 +724,11 @@ input[type=search] {
 .footer-2 .top-footer .footer-card.quick-link ul li a:hover {
   transition: all ease-in-out 0.3s;
   color: #fff;
+}
+@media (max-width: 992px) {
+  .footer-2 .top-footer .footer-card.contact {
+    margin-top: 45px;
+  }
 }
 .footer-2 .top-footer .footer-card.contact ul li.contact-item {
   display: grid;

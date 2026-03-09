@@ -855,7 +855,9 @@ input[type="search"] {
             }
 
             &.quick-link {
-
+                @media (max-width:992px) {
+                    margin-top: 45px;
+                }
 
                 ul {
                     display: grid;
@@ -888,6 +890,9 @@ input[type="search"] {
             }
 
             &.contact {
+                @media (max-width:992px) {
+                    margin-top: 45px;
+                }
                 ul {
                     li.contact-item {
                         display: grid;
