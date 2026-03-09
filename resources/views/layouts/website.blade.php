@@ -606,7 +606,7 @@
                         @if (setting('social.facebook'))
                             <li class="nav-item">
                                 <a class="nav-link" style="" target="_blank"
-                                    href="{{ setting('social.facebook') }}"> <i class="fa-brands fa-facebook"></i>
+                                    href="{{ setting('social.facebook') }}"> <i class="fa-brands fa-facebook-f"></i>
                                 </a>
                             </li>
                         @endif
