@@ -702,6 +702,9 @@ input[type=search] {
     margin-top: 45px;
   }
 }
+.footer-2 .top-footer .footer-card.quick-link {
+  background: red;
+}
 .footer-2 .top-footer .footer-card.quick-link ul {
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -729,6 +732,9 @@ input[type=search] {
   .footer-2 .top-footer .footer-card.contact {
     margin-top: 45px;
   }
+}
+.footer-2 .top-footer .footer-card.contact {
+  background: red;
 }
 .footer-2 .top-footer .footer-card.contact ul li.contact-item {
   display: grid;
