@@ -675,8 +675,8 @@ input[type=search] {
 }
 @media (max-width: 992px) {
   .footer-2 .top-footer .footer-card .social .navbar-nav li {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
   }
 }
 .footer-2 .top-footer .footer-card .social .navbar-nav li a {
@@ -784,4 +784,9 @@ input[type=search] {
 .footer-2 .bottom-footer h2,
 .footer-2 .bottom-footer p {
   font-family: "poppins", sans-serif, "SolaimanLipi";
+}
+@media (max-width: 992px) {
+  .footer-2 .bottom-footer p {
+    display: none;
+  }
 }/*# sourceMappingURL=style.css.map */
