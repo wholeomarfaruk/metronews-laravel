@@ -590,12 +590,15 @@
     <footer id="footer_area" class="footer-2" style="background: #022c6f;">
         <div class="row wrapper py-4 gap-0 gap-md-0 top-footer">
             <div class="col-12 col-md-4 footer-card">
-                <h3 class=" mb-3 footer-card-title">{{ setting('general.site_title', 'News Portal') }}</h3>
+                <h3 class=" mb-3 footer-card-title">মেট্রো নিউজ</h3>
                 <p class=" mb-2 footer-card-text">
                     <span>সম্পাদক ও প্রকাশক</span><br>
-                    <span class="fs-4 text-white">মোঃ মিজানুর রাহমান</span><br>
-                    {!! nl2br(e(setting('general.footer_text'))) !!}
+                    <span class="text-white">মোঃ মিজানুর রাহমান</span>
+                    <span class="d-block mt-2">
 
+
+                    {!! nl2br(e(setting('general.footer_text'))) !!}
+   </span>
                 </p>
                 <div class="social">
                     {{-- <h6>সোশ্যাল মিডিয়া</h6> --}}
