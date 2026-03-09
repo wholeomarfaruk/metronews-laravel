@@ -659,6 +659,7 @@
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
                             গোপনীয়তার নীতি</a>
                     </li>
+                  
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
                             শর্তাবলি</a>
@@ -670,6 +671,10 @@
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
                             বিজ্ঞাপন</a>
+                    </li>
+                      <li class="nav-item">
+                        <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
+                            ছুটির তালিকা</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
@@ -686,6 +691,10 @@
                     <li class="nav-item">
                         <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
                             মতামত</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#"><i class="fa-solid fa-arrow-right-long"></i>
+                            দিবস</a>
                     </li>
                 </ul>
             </div>
