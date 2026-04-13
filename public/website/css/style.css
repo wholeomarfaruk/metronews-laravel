@@ -727,7 +727,7 @@ input[type=search] {
   font-size: 1rem;
   color: #b4b6b9;
   transition: all ease-in-out 0.3s;
-  font-family: "poppins", sans-serif;
+  font-family: "SolaimanLipi", "poppins", sans-serif;
   padding: 4px 0;
 }
 .footer-2 .top-footer .footer-card.quick-link ul li a:hover {
