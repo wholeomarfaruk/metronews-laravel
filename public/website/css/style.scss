@@ -325,7 +325,7 @@ border-top: 1px solid #ddd;
         }
 
         .menu-area {
-            
+
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -517,7 +517,7 @@ border-top: 1px solid #ddd;
 
             box-shadow: 0 0px 15px #4948488f;
             padding-bottom: 0.3rem;
-          
+
 
             .logo {
                 display: block;
@@ -782,26 +782,40 @@ border-top: 1px solid #ddd;
     .top-footer {
         .footer-card {
             .footer-card-title {
-                font-size: 20px;
+                font-size: 17px;
                 color: #fff;
-                font-family: 'Montserrat', sans-serif, 'SolaimanLipi';
+                font-family: 'SolaimanLipi',sans-serif;
                 font-weight: 700;
 
                 &:first-child {
-                    font-size: 26px;
+                    font-size: 17px;
                 }
+
             }
 
             .footer-card-text {
                 font-size: 1rem;
                 color: #b4b6b9;
-                font-family: 'poppins', sans-serif, 'SolaimanLipi';
+                font-family: 'SolaimanLipi';
                 width: 90%;
 
                 @media (max-width:992px) {
                     width: 100%;
                 }
             }
+              & .footer-card-text, .nav-link{
+                    font-size: 1rem;
+                    color: #b4b6b9;
+                    font-family: 'SolaimanLipi',sans-serif;
+                    width: 90%;
+
+
+                }
+                & .contact-item .title, .contact-item .text{
+                    font-size: 1rem;
+
+                    font-family: 'SolaimanLipi',sans-serif;
+                }
 
             .social {
                 margin-top: 30px;
@@ -949,6 +963,7 @@ border-top: 1px solid #ddd;
                 }
             }
         }
+        
     }
 
     .bottom-footer {
@@ -964,7 +979,7 @@ border-top: 1px solid #ddd;
 
         h2,
         p {
-            font-family: 'poppins', sans-serif, 'SolaimanLipi';
+            font-family:'SolaimanLipi','poppins', sans-serif, ;
         }
         p{
             @media (max-width:992px) {
