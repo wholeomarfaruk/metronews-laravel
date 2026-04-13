@@ -51,7 +51,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Include stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.1.1') }}">
+    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.1.2') }}">
     @stack('styles')
 </head>
 
@@ -581,7 +581,7 @@
 
 
                 @livewire('ad-component', ['id' => 18, 'height' => '80px'], key('ad-18'))
-            
+
         </div>
         @yield('content')
         <div class="wrapper">
