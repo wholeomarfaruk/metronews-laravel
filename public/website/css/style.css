@@ -634,24 +634,34 @@ input[type=search] {
   padding-bottom: 10px;
 }
 .footer-2 .top-footer .footer-card .footer-card-title {
-  font-size: 20px;
+  font-size: 17px;
   color: #fff;
-  font-family: "Montserrat", sans-serif, "SolaimanLipi";
+  font-family: "SolaimanLipi", sans-serif;
   font-weight: 700;
 }
 .footer-2 .top-footer .footer-card .footer-card-title:first-child {
-  font-size: 26px;
+  font-size: 17px;
 }
 .footer-2 .top-footer .footer-card .footer-card-text {
   font-size: 1rem;
   color: #b4b6b9;
-  font-family: "poppins", sans-serif, "SolaimanLipi";
+  font-family: "SolaimanLipi";
   width: 90%;
 }
 @media (max-width: 992px) {
   .footer-2 .top-footer .footer-card .footer-card-text {
     width: 100%;
   }
+}
+.footer-2 .top-footer .footer-card .footer-card-text, .footer-2 .top-footer .footer-card .nav-link {
+  font-size: 1rem;
+  color: #b4b6b9;
+  font-family: "SolaimanLipi", sans-serif;
+  width: 90%;
+}
+.footer-2 .top-footer .footer-card .contact-item .title, .footer-2 .top-footer .footer-card .contact-item .text {
+  font-size: 1rem;
+  font-family: "SolaimanLipi", sans-serif;
 }
 .footer-2 .top-footer .footer-card .social {
   margin-top: 30px;
@@ -782,7 +792,7 @@ input[type=search] {
 }
 .footer-2 .bottom-footer h2,
 .footer-2 .bottom-footer p {
-  font-family: "poppins", sans-serif, "SolaimanLipi";
+  font-family: "SolaimanLipi", "poppins", sans-serif;
 }
 @media (max-width: 992px) {
   .footer-2 .bottom-footer p {

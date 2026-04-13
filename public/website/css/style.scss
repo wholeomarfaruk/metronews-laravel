@@ -760,7 +760,6 @@ border-top: 1px solid #ddd;
 
     & .g-item {
         min-height: 80px;
-        ;
 
         &:nth-child(1) {
             grid-area: 2 span / 5 span;
@@ -792,7 +791,6 @@ border-top: 1px solid #ddd;
                 }
 
             }
-
             .footer-card-text {
                 font-size: 1rem;
                 color: #b4b6b9;
@@ -963,7 +961,7 @@ border-top: 1px solid #ddd;
                 }
             }
         }
-        
+
     }
 
     .bottom-footer {
