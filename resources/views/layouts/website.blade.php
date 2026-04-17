@@ -51,7 +51,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Include stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.1.3') }}">
+    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.1.4') }}">
     @stack('styles')
 </head>
 
@@ -608,42 +608,42 @@
                         @if (setting('social.facebook'))
                             <li class="nav-item">
                                 <a class="nav-link" style="" target="_blank"
-                                    href="{{ setting('social.facebook') }}"> <i class="fa-brands fa-facebook-f"></i>
+                                    href="{{ setting('social.facebook') }}"> <img src="{{asset('website/img/icons/facebook-svgrepo-com.svg')}}" />
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.instagram'))
                             <li class="nav-item">
                                 <a target="_blank" class="nav-link " style=""
-                                    href="{{ setting('social.instagram') }}"> <i class="fa-brands fa-instagram"></i>
+                                    href="{{ setting('social.instagram') }}">  <img src="{{asset('website/img/icons/instagram-svgrepo-com.svg')}}" />
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.youtube'))
                             <li class="nav-item">
                                 <a target="_blank" class="nav-link " style=""
-                                    href="{{ setting('social.youtube') }}"> <i class="fa-brands fa-youtube"></i>
+                                    href="{{ setting('social.youtube') }}">  <img src="{{asset('website/img/icons/youtube-svgrepo-com.svg')}}" />
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.twitter'))
                             <li class="nav-item">
                                 <a target="_blank" class="nav-link " style=""
-                                    href="{{ setting('social.twitter') }}"> <i class="fa-solid fa-x"></i>
+                                    href="{{ setting('social.twitter') }}"> <img src="{{asset('website/img/icons/twitter_x.svg')}}" />
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.linkedin'))
                             <li class="nav-item">
                                 <a target="_blank" class="nav-link " style=""
-                                    href="{{ setting('social.linkedin') }}"> <i class="fa-brands fa-linkedin"></i>
+                                    href="{{ setting('social.linkedin') }}">  <img src="{{asset('website/img/icons/linkedin-svgrepo-com.svg')}}" />
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.tiktok'))
                             <li class="nav-item">
                                 <a target="_blank" class="nav-link " style=""
-                                    href="{{ setting('social.tiktok') }}"> <i class="fa-brands fa-tiktok"></i>
+                                    href="{{ setting('social.tiktok') }}"> <img src="{{asset('website/img/icons/tiktok-logo-logo-svgrepo-com.svg')}}" />
                                 </a>
                             </li>
                         @endif

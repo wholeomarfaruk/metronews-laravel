@@ -344,7 +344,7 @@
                                             </div>
                                         </div>
                                         @php
-                                            $oporad = $categories->find(12)->posts()->latest()->first();
+                                            $oporad = $categories->find(12)?->posts()?->latest()?->first();
                                         @endphp
                                         @if ($oporad)
                                             <div class="col-lg-12 col-6">

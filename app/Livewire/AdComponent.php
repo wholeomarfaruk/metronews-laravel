@@ -14,8 +14,11 @@ class AdComponent extends Component
         $this->height = $height;
         $id = $id ?? 1;
 
+        if(!$this->ad){
+            return;
+        }
         $this->ad = $ad = Ad::find($id);
-            if (!$this->ad->status != 1) {
+            if ($this->ad && !$this->ad->status != 1) {
             $id = 1;
         }
         if(date('Y-m-d', strtotime($this->ad->expire_at)) < date('Y-m-d')) {
