@@ -73,7 +73,7 @@ class MainMenu extends Component
         $category->save();
         $this->createModal = false;
         $this->dispatch('categoryCreated');
-        $this->reset(['name', 'parent_id']);
+        $this->reset(['name', 'parent_id','order_number','new_url','new_status']);
 
     }
     public function openCreateModal()
@@ -132,7 +132,7 @@ class MainMenu extends Component
             $category->save();
             $this->editModal = false;
             $this->dispatch('categoryUpdated');
-            $this->reset(['editCategoryId', 'editCategoryName', 'selectedCategory_parent_id']);
+            $this->reset(['editCategoryId', 'editCategoryName', 'selectedCategory_parent_id','edit_url','order_number','edit_status']);
             $this->allCategories = CategoryList::all();
             session()->flash('message', 'Category updated successfully.');
         } else {
