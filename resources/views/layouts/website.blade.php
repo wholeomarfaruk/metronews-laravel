@@ -51,7 +51,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Include stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.1.3') }}">
+    <link rel="stylesheet" href="{{ asset('website/css/style.css?v=1.1.4') }}">
     @stack('styles')
 </head>
 
@@ -188,72 +188,6 @@
                                         href="{{ $mm_item->url }}">{{ $mm_item->name }}</a>
                                 </li>
                             @endforeach
-                            {{-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('recent.post.list') }}">সর্বশেষ</a>
-                        </li>
-                        @if ($categories?->find('7'))
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('category', $categories->find('7')->slug) }}">জাতীয়</a>
-
-                            </li>
-                        @endif
-                        @if ($categories?->find('9'))
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('category', $categories->find('9')->slug) }}">রাজনীতি</a>
-                            </li>
-                        @endif
-                        @if ($categories?->find('8'))
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('category', $categories->find('8')->slug) }}">বাণিজ্য</a>
-                            </li>
-                        @endif
-                        @if ($categories?->find('5'))
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('category', $categories->find('5')->slug) }}">সারাদেশ</a>
-                            </li>
-                        @endif
-                        @if ($categories?->find('6'))
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('category', $categories->find('6')->slug) }}">আন্তর্জাতিক</a>
-                            </li>
-                        @endif
-                        @if ($categories?->find('3'))
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('category', $categories->find('3')->slug) }}">খেলা</a>
-                            </li>
-                        @endif
-                        @if ($categories?->find('4'))
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('category', $categories->find('4')->slug) }}">বিনোদন</a>
-                            </li>
-                        @endif
-                        @if ($categories?->find('10'))
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('category', $categories->find('10')->slug) }}">শিক্ষা</a>
-                            </li>
-                        @endif
-                        @if ($categories?->find('2'))
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('category', $categories->find('2')->slug) }}">মতামত</a>
-                            </li>
-                        @endif
-                        @if ($categories?->find('29'))
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('category', $categories->find('29')->slug) }}">অপরাধ</a>
-                            </li>
-                        @endif --}}
-
-
 
 
 
@@ -421,159 +355,6 @@
         @endforeach
 
 
-        {{-- <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
-        aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-
-            <nav id="sidebar-menu">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-" href="#">Home</a></li>
-
-
-                    <li class="nav-item dropdown border-bottom w-100">
-                        <a class="nav-link d-flex justify-content-between align-items-center"
-                            href="{{ route('recent.post.list') }}">
-                            <span>সর্বশেষ</span>
-                        </a>
-
-                    </li>
-
-
-
-
-
-                    @if ($categories?->find('7'))
-                        <li class="nav-item dropdown border-bottom w-100">
-
-
-                            <!-- Split dropend button -->
-                            <div class="btn-group dropend w-100">
-                                <a type="button" class="nav-link" href="#">
-                                    Split dropend
-                                </a>
-                                <button type="button"
-                                    class="btn btn-secondary dropdown-toggle dropdown-toggle-split flex-grow-0"
-                                    data-bs-toggle="offcanvassubmenu" data-bs-target="#offcanvassubmenu" aria-controls="offcanvassubmenu">
-                                    <span class="visually-hidden">Toggle Dropend</span>
-                                </button>
-
-
-                                <div class="offcanvas offcanvas-end" tabindex="1" id="offcanvassubmenu"
-                                    aria-labelledby="offcanvasExampleLabel">
-                                    <div class="offcanvas-header">
-                                        <h5 class="offcanvas-title" id="offcanvassubmenuLabel">Menu</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="offcanvas-body">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </li>
-
-                    @endif
-
-                    @if ($categories?->find('9'))
-                        <li class="nav-item dropdown border-bottom w-100">
-                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                href="{{ route('category', $categories->find('9')->slug) }}">
-                                <span>রাজনীতি</span>
-                            </a>
-
-                        </li>
-                    @endif
-                    @if ($categories?->find('8'))
-                        <li class="nav-item dropdown border-bottom w-100">
-                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                href="{{ route('category', $categories->find('8')->slug) }}">
-                                <span> <span>বাণিজ্য</span>
-                                </span>
-                            </a>
-
-                        </li>
-                    @endif
-                    @if ($categories?->find('5'))
-                        <li class="nav-item dropdown border-bottom w-100">
-                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                href="{{ route('category', $categories->find('5')->slug) }}">
-                                <span> <span>সারাদেশ</span>
-                                </span>
-                            </a>
-
-                        </li>
-                    @endif
-                    @if ($categories?->find('6'))
-                        <li class="nav-item dropdown border-bottom w-100">
-                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                href="{{ route('category', $categories->find('6')->slug) }}">
-                                <span> <span>আন্তর্জাতিক</span>
-                                </span>
-                            </a>
-
-                        </li>
-                    @endif
-                    @if ($categories?->find('3'))
-                        <li class="nav-item dropdown border-bottom w-100">
-                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                href="{{ route('category', $categories->find('3')->slug) }}">
-                                <span> <span>খেলা</span>
-                                </span>
-                            </a>
-
-                        </li>
-                    @endif
-                    @if ($categories?->find('4'))
-                        <li class="nav-item dropdown border-bottom w-100">
-                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                href="{{ route('category', $categories->find('4')->slug) }}">
-                                <span> <span>বিনোদন</span>
-                                </span>
-                            </a>
-
-                        </li>
-                    @endif
-
-                    @if ($categories?->find('10'))
-                        <li class="nav-item dropdown border-bottom w-100">
-                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                href="{{ route('category', $categories->find('10')->slug) }}">
-                                <span> <span>শিক্ষা</span>
-                                </span>
-                            </a>
-
-                        </li>
-                    @endif
-                    @if ($categories?->find('2'))
-                        <li class="nav-item dropdown border-bottom w-100">
-                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                href="{{ route('category', $categories->find('2')->slug) }}">
-                                <span> <span>মতামত</span>
-                                </span>
-                            </a>
-
-                        </li>
-                    @endif
-                    @if ($categories?->find('29'))
-                        <li class="nav-item dropdown border-bottom w-100">
-                            <a class="nav-link d-flex justify-content-between align-items-center"
-                                href="{{ route('category', $categories->find('29')->slug) }}">
-                                <span> <span>অপরাধ</span>
-                                </span>
-                            </a>
-
-                        </li>
-                    @endif
-
-                </ul>
-            </nav>
-
-        </div>
-    </div> --}}
     </header>
 
     <main id="main_area">
@@ -608,42 +389,42 @@
                         @if (setting('social.facebook'))
                             <li class="nav-item">
                                 <a class="nav-link" style="" target="_blank"
-                                    href="{{ setting('social.facebook') }}"> <i class="fa-brands fa-facebook-f"></i>
+                                    href="{{ setting('social.facebook') }}"> <img src="{{asset('website/img/icons/facebook-svgrepo-com.svg')}}" />
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.instagram'))
                             <li class="nav-item">
                                 <a target="_blank" class="nav-link " style=""
-                                    href="{{ setting('social.instagram') }}"> <i class="fa-brands fa-instagram"></i>
+                                    href="{{ setting('social.instagram') }}">  <img src="{{asset('website/img/icons/instagram-svgrepo-com.svg')}}" />
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.youtube'))
                             <li class="nav-item">
                                 <a target="_blank" class="nav-link " style=""
-                                    href="{{ setting('social.youtube') }}"> <i class="fa-brands fa-youtube"></i>
+                                    href="{{ setting('social.youtube') }}">  <img src="{{asset('website/img/icons/youtube-svgrepo-com.svg')}}" />
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.twitter'))
                             <li class="nav-item">
                                 <a target="_blank" class="nav-link " style=""
-                                    href="{{ setting('social.twitter') }}"> <i class="fa-solid fa-x"></i>
+                                    href="{{ setting('social.twitter') }}"> <img src="{{asset('website/img/icons/twitter_x.svg')}}" />
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.linkedin'))
                             <li class="nav-item">
                                 <a target="_blank" class="nav-link " style=""
-                                    href="{{ setting('social.linkedin') }}"> <i class="fa-brands fa-linkedin"></i>
+                                    href="{{ setting('social.linkedin') }}">  <img src="{{asset('website/img/icons/linkedin-svgrepo-com.svg')}}" />
                                 </a>
                             </li>
                         @endif
                         @if (setting('social.tiktok'))
                             <li class="nav-item">
                                 <a target="_blank" class="nav-link " style=""
-                                    href="{{ setting('social.tiktok') }}"> <i class="fa-brands fa-tiktok"></i>
+                                    href="{{ setting('social.tiktok') }}"> <img src="{{asset('website/img/icons/tiktok-logo-logo-svgrepo-com.svg')}}" />
                                 </a>
                             </li>
                         @endif

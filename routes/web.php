@@ -59,7 +59,7 @@ Route::get('/optimize', function () {
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('dashboard', function () {
-    return redirect()->route('admin.dashboard'); // Redirect to the admin dashboard
+    return redirect()->route('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::view('profile', 'profile')
@@ -124,6 +124,7 @@ route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')
             Artisan::call('optimize');
             return "Application optimized successfully!";
         });
+
         //ads
         Route::get('/ads', [AdController::class, 'index'])->name('ads');
         Route::get('/ads/edit/{id}', [AdController::class, 'edit'])->name('ads.edit');
