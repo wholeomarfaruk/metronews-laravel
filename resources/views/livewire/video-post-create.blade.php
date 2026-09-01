@@ -14,11 +14,11 @@
                 <!-- End Modal -->
             </div>
             <div class="flex items-center gap-3">
-                <button type="submit" wire:click="$set('status', 'draft')"
+                <button type="submit" onclick="syncEditorContent()" wire:click="$set('status', 'draft')"
                     class="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs ring-1 ring-gray-300 transition hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03]">
                     Draft
                 </button>
-                <button type="submit" wire:click="$set('status', 'published')"
+                <button type="submit" onclick="syncEditorContent()" wire:click="$set('status', 'published')"
                     class="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs ring-1 ring-gray-300 transition hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03]">
                     Publish
                 </button>
@@ -358,30 +358,9 @@
                 console.log('Loaded')
             });
         </script>
-        {{-- <script src="https://cdn.tiny.cloud/1/6fc0o57nwmnuyujo3x2t2m7qttqr09s74djxb47lnzygcixp/tinymce/8/tinymce.min.js"
-            referrerpolicy="origin" crossorigin="anonymous"></script>
-
-        <script>
-            tinymce.init({
-                selector: '#editor',
-                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-
-                setup: function(editor) {
-                    editor.on('change keyup', function() {
-                        @this.set('content', editor.getContent()); // update Livewire property
-                    });
-                },
-
-                init_instance_callback: function(editor) {
-                    editor.setContent(@this.get('content') || ''); // load existing content when editing
-                }
-            });
-        </script> --}}
 
         <script>
             document.addEventListener('livewire:load', function() {
-                alert('test')
                 console.log('Livewire is ready!');
                 Livewire.on('slug', () => {
                     var title = $('#title').val();
@@ -395,49 +374,37 @@
 
             });
         </script>
-        {{-- <script>
-            console.log("test")
-            $('#title').on('input', function() {
-                var title = $(this).val();
-                console.log(title)
-
-                // Slug generation
-                var slug = title.toLowerCase() // Lowercase
-                    .trim() // Remove leading/trailing spaces
-                    .replace(/[^\w\s-]/g, '') // Remove special chars
-                    .replace(/\s+/g, '-') // Replace spaces with dash
-                    .replace(/--+/g, '-'); // Replace multiple dashes
-
-                $('#slug').val(slug);
-            });
-        </script> --}}
         <script>
             document.addEventListener('livewire:initialized', () => {
-                // Your JavaScript code that depends on Livewire being ready goes here.
-                // For example:
                 console.log('Livewire has finished initializing!');
-                // You can now safely interact with Livewire's global object (window.Livewire)
-                // or perform actions related to Livewire components.
             });
-            document.addEventListener('livewire:initialized', function() {
+        </script>
+        <script>
+            let omarEditor;
 
-                var editor = new RichTextEditor("#editor_data", {
-                    contentCssUrl: "/plugins/richtexteditor/runtime/richtexteditor_content.css",
-                    callbacks: {
-                        onchange: function(contents) {
-                            console.log("Editor content:", contents); // debug
-                            @this.set('content', contents); // update Livewire property
-                        }
-                    }
-                });
-                editor.attachEvent("change", function() {
-                    @this.set('content', editor.getHTML());
-                });
-                // Load existing content from Livewire if editing
-                @this.on('content', content => {
-                    editor.setContent(content || '');
+            function initOmarEditor() {
+                if (omarEditor) return;
+
+                omarEditor = OmarTextEditor.init({
+                    selector: '#editor_data',
+                    plugins: ['link', 'autolink', 'anchor', 'image', 'media', 'embed', 'table', 'codesample', 'emoticons', 'charmap', 'searchreplace', 'wordcount', 'elementpath', 'spacing', 'visualblocks'],
+                    toolbar: 'undo redo | blockformat fontfamily fontsize | bold italic underline strikethrough | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify lineheight | bullist numlist indent outdent | link image media embed table | emoticons charmap codesample | searchreplace',
+                    menubar: false,
                 });
 
-            });
+                omarEditor.setContent(@this.get('content') || '');
+
+                omarEditor.on('change', () => {
+                    @this.set('content', omarEditor.getContent());
+                });
+            }
+
+            document.addEventListener('livewire:initialized', initOmarEditor);
+
+            function syncEditorContent() {
+                if (omarEditor) {
+                    @this.set('content', omarEditor.getContent());
+                }
+            }
         </script>
     @endpush
