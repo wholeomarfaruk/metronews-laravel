@@ -19,4 +19,8 @@ class SettingController extends Controller
     {
         return view('admin.settings.social');
     }
+    public function greetingCard()
+    {
+        return view('admin.settings.greeting-card');
+    }
 }

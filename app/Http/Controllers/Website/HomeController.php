@@ -140,4 +140,41 @@ class HomeController extends Controller
         $slug = $videos->first()->slug;
         return redirect()->route('video.post.shorts.show',['slug'=>$slug]);
     }
+
+    public function greetingCard()
+    {
+        $saved = setting('greeting_card', []);
+        if (is_string($saved)) {
+            $saved = json_decode($saved, true) ?: [];
+        }
+        $card = array_merge(config('greeting_card.defaults'), $saved);
+        if (!$card['enabled']) {
+            abort(404);
+        }
+
+        $card['template_url'] = $card['template'] && file_exists(public_path($card['template']))
+            ? asset($card['template'])
+            : null;
+        $card['background_url'] = $card['background'] && file_exists(public_path($card['background']))
+            ? asset($card['background'])
+            : null;
+        $card['font_query'] = config('greeting_card.fonts.' . $card['font_family'], 'Noto+Serif+Bengali:wght@400;700');
+
+        // No template uploaded yet: use the built-in design drawn in the browser,
+        // with the name placed in its own name box (admin position is for the PNG).
+        if (!$card['template_url']) {
+            $card = array_merge($card, [
+                'template_width' => 1080,
+                'template_height' => 1350,
+                'name_x' => 50,
+                'name_y' => 85.9,
+                'name_max_width' => 54,
+                'name_color' => '#ffffff',
+            ]);
+        }
+        $card['site_title'] = setting('general.site_title', 'Metro News');
+        $card['site_host'] = request()->getHost();
+
+        return view('website.greeting-card.index', compact('card'));
+    }
 }

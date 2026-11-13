@@ -133,6 +133,7 @@ route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')
         Route::get('/settings', [SettingController::class, 'index'])->name('settings');
         Route::get('/settings/general',[SettingController::class, 'general'])->name('settings.general');
         Route::get('/settings/social',[SettingController::class, 'social'])->name('settings.social');
+        Route::get('/settings/greeting-card',[SettingController::class, 'greetingCard'])->name('settings.greeting-card');
         Route::get('/clear-cache', function () {
             Artisan::call('optimize:clear');
             return "Cache cleared successfully!";
@@ -158,4 +159,7 @@ Route::get('/news/videos', [HomeController::class, 'videosList'])->name('video.p
 Route::get('/news/shorts', [HomeController::class, 'videoShortsSelect'])->name('video.post.shorts');
 Route::get('/news/videos/{slug}', [HomeController::class, 'videoPostShow'])->name('video.post.show');
 Route::get('/news/shorts/{slug}', [HomeController::class, 'videoShortsShow'])->name('video.post.shorts.show');
+
+// Public greeting card generator
+Route::get('/greeting-card', [HomeController::class, 'greetingCard'])->name('greeting.card');
 
