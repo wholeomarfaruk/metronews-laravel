@@ -29,7 +29,9 @@
 @endphp
 
 @push('styles')
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ $card['font_query'] }}&display=swap">
+    @foreach ($card['font_css'] as $fontCss)
+        <link rel="stylesheet" href="{{ $fontCss }}">
+    @endforeach
     <style>
         .gc-page { --gc-red: #d71920; --gc-navy: #1b4a8c; }
         .gc-hero {
@@ -50,11 +52,26 @@
         .gc-page .form-range::-webkit-slider-thumb { background: var(--gc-red); }
         .gc-page .form-range::-moz-range-thumb { background: var(--gc-red); }
         .gc-canvas-wrap { position: relative; max-width: 480px; margin: 0 auto; }
+        /* width/height auto + both max limits keeps the card's aspect ratio while fitting the screen */
         #gcCanvas {
-            width: 100%; height: auto; display: block; border-radius: 8px;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, .12); touch-action: none; cursor: grab; background: #eef1f6;
+            width: auto; height: auto; max-width: 100%; max-height: 75vh; display: block; margin: 0 auto;
+            border-radius: 8px; box-shadow: 0 6px 24px rgba(0, 0, 0, .12); cursor: pointer; background: #eef1f6;
         }
+        /* Only capture touches once there is a photo to move, so the page still scrolls before that */
+        #gcCanvas.has-photo { touch-action: none; cursor: grab; }
         #gcCanvas.is-dragging { cursor: grabbing; }
+        #gcResult img { max-height: 70vh; }
+        @media (max-width: 991.98px) {
+            /* Phones/tablets: keep the card short enough that the sliders stay in reach */
+            #gcCanvas { max-height: 60vh; }
+        }
+        @media (max-width: 575.98px) {
+            .gc-hero { padding: 1rem; }
+            .gc-hero h1 { font-size: 1.25rem; }
+            .gc-hero p { font-size: .9rem; }
+            .gc-panel { padding: .9rem; }
+            .gc-drop { padding: 1rem .75rem; }
+        }
         .gc-hint { font-size: .85rem; color: #6c757d; text-align: center; margin-top: .5rem; }
         .gc-btn-red { background: var(--gc-red); border-color: var(--gc-red); color: #fff; }
         .gc-btn-red:hover, .gc-btn-red:focus { background: #b5141a; border-color: #b5141a; color: #fff; }
@@ -140,6 +157,14 @@
                                 <i class="fa-solid fa-download"></i> ডাউনলোড করুন
                             </button>
                             <div class="small text-danger mt-2 d-none" id="gcError"></div>
+
+                            {{-- Facebook/Messenger in-app browsers block downloads: show the image to long-press instead --}}
+                            <div id="gcResult" class="d-none mt-3 text-center">
+                                <div class="alert alert-warning small py-2 mb-2">
+                                    <i class="fa-solid fa-hand-pointer"></i> ছবিটির উপর চেপে ধরে রাখুন, তারপর <b>Save / Download image</b> চাপুন।
+                                </div>
+                                <img id="gcResultImg" class="img-fluid rounded border" alt="আপনার শুভেচ্ছা কার্ড">
+                            </div>
                         </div>
                     </div>
 
@@ -148,7 +173,7 @@
                         <div class="gc-panel">
                             <div class="gc-canvas-wrap">
                                 <canvas id="gcCanvas" width="{{ $W }}" height="{{ $H }}"
-                                    style="aspect-ratio: {{ $W }} / {{ $H }};" aria-label="শুভেচ্ছা কার্ডের প্রিভিউ"></canvas>
+                                    aria-label="শুভেচ্ছা কার্ডের প্রিভিউ"></canvas>
                             </div>
                             <div class="gc-hint">প্রিভিউ — ডাউনলোডের ছবি {{ $W }}×{{ $H }} পিক্সেল</div>
                         </div>
@@ -207,15 +232,22 @@
                 function drawPhoto() {
                     const hasBg = drawBackground();
                     if (!state.img) {
-                        if (hasBg) return; // background stands in as the placeholder
-
-                        ctx.fillStyle = '#e9edf3';
-                        ctx.fillRect(0, 0, W, H);
-                        ctx.fillStyle = '#8a97ab';
+                        if (!hasBg) {
+                            ctx.fillStyle = '#e9edf3';
+                            ctx.fillRect(0, 0, W, H);
+                        }
+                        // Hint text, outlined in white so it stays readable over a background image
+                        ctx.save();
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
                         ctx.font = `700 ${Math.round(W * 0.05)}px "Noto Sans Bengali", sans-serif`;
+                        ctx.lineJoin = 'round';
+                        ctx.lineWidth = Math.round(W * 0.012);
+                        ctx.strokeStyle = 'rgba(255,255,255,.9)';
+                        ctx.strokeText('এখানে ক্লিক করে ছবি দিন', W / 2, H * 0.3);
+                        ctx.fillStyle = '#6b7a90';
                         ctx.fillText('এখানে ক্লিক করে ছবি দিন', W / 2, H * 0.3);
+                        ctx.restore();
                         return;
                     }
                     const s = baseScale() * state.zoom;
@@ -239,7 +271,7 @@
                     ctx.font = `${CFG.fontWeight} ${size}px ${FONT}`;
                     const w = ctx.measureText(name).width;
                     if (w > maxW) { // shrink long names so they stay inside the name box
-                        size = Math.floor(size * maxW / w);
+                        size = Math.max(8, Math.floor(size * maxW / w));
                         ctx.font = `${CFG.fontWeight} ${size}px ${FONT}`;
                         $('gcFitNote').classList.remove('d-none');
                     }
@@ -367,6 +399,7 @@
                     $('gcDropText').textContent = 'অন্য ছবি নির্বাচন করুন';
                     $('gcPhotoControls').setAttribute('aria-disabled', 'false');
                     dlBtn.disabled = false;
+                    canvas.classList.add('has-photo');
                 }
 
                 function resetPhoto() {
@@ -420,8 +453,12 @@
                     return { x: (e.clientX - r.left) * (W / r.width), y: (e.clientY - r.top) * (H / r.height) };
                 }
 
+                // Tap the empty card to pick a photo. Uses "click" (not pointerdown) so that
+                // swiping over the card on a phone scrolls the page instead of opening the picker.
+                canvas.addEventListener('click', () => { if (!state.img) fileInput.click(); });
+
                 canvas.addEventListener('pointerdown', (e) => {
-                    if (!state.img) { fileInput.click(); return; }
+                    if (!state.img) return;
                     canvas.setPointerCapture(e.pointerId);
                     pointers.set(e.pointerId, toCanvas(e));
                     canvas.classList.add('is-dragging');
@@ -463,6 +500,9 @@
                 }, { passive: false });
 
                 // ---------- Download ----------
+                // Facebook / Messenger / Instagram in-app browsers ignore <a download>.
+                const IN_APP_BROWSER = /FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram|Line\//i.test(navigator.userAgent);
+                let resultUrl = null;
                 dlBtn.addEventListener('click', async () => {
                     showError('');
                     await loadNameFont();
@@ -478,6 +518,15 @@
                     try {
                         canvas.toBlob((blob) => {
                             if (!blob) return fail();
+                            if (IN_APP_BROWSER) {
+                                const img = $('gcResultImg');
+                                if (resultUrl) URL.revokeObjectURL(resultUrl);
+                                resultUrl = URL.createObjectURL(blob);
+                                img.src = resultUrl;
+                                $('gcResult').classList.remove('d-none');
+                                $('gcResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                return;
+                            }
                             const a = document.createElement('a');
                             a.href = URL.createObjectURL(blob);
                             a.download = `greeting-card-${safe}.png`;

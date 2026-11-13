@@ -1,8 +1,10 @@
 <?php
 
 return [
-    // Fonts selectable for the name on the greeting card.
-    // key = CSS font-family name, value = Google Fonts "family=" query part.
+    // Fonts selectable for the name on the greeting card. They are self-hosted in
+    // public/fonts/greeting-card/{slug}.css — after adding or changing a font here, run:
+    //   php artisan greeting-card:fonts
+    // key = CSS font-family name, value = Google Fonts "family=" query part (used only for downloading).
     'fonts' => [
         'Noto Serif Bengali' => 'Noto+Serif+Bengali:wght@400;700',
         'Noto Sans Bengali' => 'Noto+Sans+Bengali:wght@400;700',

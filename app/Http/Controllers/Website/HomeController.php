@@ -158,7 +158,15 @@ class HomeController extends Controller
         $card['background_url'] = $card['background'] && file_exists(public_path($card['background']))
             ? asset($card['background'])
             : null;
-        $card['font_query'] = config('greeting_card.fonts.' . $card['font_family'], 'Noto+Serif+Bengali:wght@400;700');
+        // Self-hosted fonts (php artisan greeting-card:fonts). Noto Sans Bengali is always
+        // loaded too: it's the canvas fallback and the built-in design's font.
+        if (!array_key_exists($card['font_family'], config('greeting_card.fonts'))) {
+            $card['font_family'] = 'Noto Serif Bengali'; // saved font no longer in config
+        }
+        $card['font_css'] = array_unique([
+            asset('fonts/greeting-card/' . \Illuminate\Support\Str::slug($card['font_family']) . '.css'),
+            asset('fonts/greeting-card/noto-sans-bengali.css'),
+        ]);
 
         // No template uploaded yet: use the built-in design drawn in the browser,
         // with the name placed in its own name box (admin position is for the PNG).

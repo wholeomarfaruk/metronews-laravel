@@ -3,10 +3,12 @@
     $labelClass = 'mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400';
     $previewUrl = $template ? $template->temporaryUrl() : ($old_template ? asset($old_template) : null);
     $bgUrl = $background ? $background->temporaryUrl() : (!$remove_background && $old_background ? asset($old_background) : null);
-    $fontQuery = collect(config('greeting_card.fonts'))->map(fn($q) => 'family=' . $q)->implode('&');
 @endphp
 <div>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ $fontQuery }}&display=swap">
+    {{-- Self-hosted fonts (php artisan greeting-card:fonts) so the preview matches the card --}}
+    @foreach ($fonts as $font)
+        <link rel="stylesheet" href="{{ asset('fonts/greeting-card/' . \Illuminate\Support\Str::slug($font) . '.css') }}">
+    @endforeach
 
     <div class="mx-auto max-w-(--breakpoint-2xl) p-4 md:p-6">
         <!-- Breadcrumb Start -->
@@ -90,7 +92,7 @@
                     <hr class="border-gray-200 dark:border-gray-800">
                     <h3 class="font-semibold text-gray-800 dark:text-white/90">Name style</h3>
 
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="{{ $labelClass }}">Font</label>
                             <select wire:model="font_family" class="{{ $inputClass }}">
@@ -123,7 +125,7 @@
                         <input type="number" wire:model="name_max_width" min="5" max="100" step="0.5" class="{{ $inputClass }}">
                         @error('name_max_width') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="{{ $labelClass }}">Name centre X (%)</label>
                             <input type="number" wire:model="name_x" min="0" max="100" step="0.01" class="{{ $inputClass }}">
@@ -152,8 +154,8 @@
                             x-data="{
                                 place(e) {
                                     const r = this.$el.getBoundingClientRect();
-                                    $wire.name_x = +((e.clientX - r.left) / r.width * 100).toFixed(2);
-                                    $wire.name_y = +((e.clientY - r.top) / r.height * 100).toFixed(2);
+                                    this.$wire.name_x = +((e.clientX - r.left) / r.width * 100).toFixed(2);
+                                    this.$wire.name_y = +((e.clientY - r.top) / r.height * 100).toFixed(2);
                                 }
                             }"
                             @click="place($event)">
