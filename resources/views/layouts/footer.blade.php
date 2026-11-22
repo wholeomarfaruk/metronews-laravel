@@ -308,6 +308,8 @@
             <li><a href="#">নীতি ও শর্ত</a></li>
             <li><a href="#">যোগাযোগ</a></li>
             <li><a href="#">নিউজলেটার</a></li>
+            <li><a href="/greeting-card">শুভেচ্ছা কার্ড</a></li>
+
         </ul>
     </nav>
 
