@@ -259,6 +259,7 @@ class HomeController extends Controller
                 'viewUrl' => route('greeting.card.image', ['token' => $token]),
                 'downloadUrl' => route('greeting.card.download', ['token' => $token]),
                 'cardPageUrl' => route('greeting.card'),
+                'fileName' => config('greeting_card.download_name') . '.jpg',
                 'inApp' => GreetingCardEvent::isInAppBrowser($ua),
                 'isAndroid' => stripos($ua, 'Android') !== false,
             ], $available ? 200 : 404)
@@ -297,7 +298,7 @@ class HomeController extends Controller
         ];
 
         $response = $download
-            ? response()->download($path, 'greeting-card.jpg', $headers)
+            ? response()->download($path, config('greeting_card.download_name') . '.jpg', $headers)
             : response()->file($path, $headers);
         // Set after creation: BinaryFileResponse marks itself "public" in its constructor.
         $response->headers->set('Cache-Control', 'no-store, private, max-age=0');

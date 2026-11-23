@@ -46,7 +46,7 @@
             @endif
 
             <div class="d-grid gap-2">
-                <a id="gcDownload" class="btn gc-btn-red btn-lg" href="{{ $downloadUrl }}" download="greeting-card.jpg">
+                <a id="gcDownload" class="btn gc-btn-red btn-lg" href="{{ $downloadUrl }}" download="{{ $fileName }}">
                     <i class="fa-solid fa-download"></i> ডাউনলোড করুন
                 </a>
                 <button type="button" id="gcShare" class="btn btn-outline-primary btn-lg d-none">
@@ -71,6 +71,7 @@
             $jsConfig = [
                 'viewUrl' => $viewUrl,
                 'downloadUrl' => $downloadUrl,
+                'fileName' => $fileName,
                 'trackUrl' => route('greeting.card.downloaded'),
                 'inApp' => $inApp,
                 'isAndroid' => $isAndroid,
@@ -93,7 +94,7 @@
                     .then((r) => r.ok ? r.blob() : null)
                     .then((blob) => {
                         if (!blob) return null;
-                        file = new File([blob], 'greeting-card.jpg', { type: 'image/jpeg' });
+                        file = new File([blob], CFG.fileName, { type: 'image/jpeg' });
                         if (navigator.canShare && navigator.canShare({ files: [file] })) {
                             document.getElementById('gcShare').classList.remove('d-none');
                         }
@@ -105,7 +106,7 @@
                     if (!file) return false;
                     const a = document.createElement('a');
                     a.href = URL.createObjectURL(file);
-                    a.download = 'greeting-card.jpg';
+                    a.download = CFG.fileName;
                     document.body.appendChild(a);
                     a.click();
                     a.remove();

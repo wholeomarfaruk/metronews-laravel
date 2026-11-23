@@ -28,6 +28,8 @@
         'trackUrl' => route('greeting.card.downloaded'),
         // Temporary card upload for social app browsers
         'fileUrl' => route('greeting.card.file.store'),
+        // Download/share file name, without extension
+        'fileName' => config('greeting_card.download_name'),
         'csrf' => csrf_token(),
     ];
     $defaultSize = (int) $card['font_size'];
@@ -190,7 +192,7 @@
                                     <a id="gcResultOpen" href="#" class="btn gc-btn-red d-none">
                                         <i class="fa-solid fa-arrow-up-right-from-square"></i> ব্রাউজারে খুলে ডাউনলোড করুন
                                     </a>
-                                    <a id="gcResultDownload" href="#" class="btn btn-outline-secondary d-none" download="greeting-card.jpg">
+                                    <a id="gcResultDownload" href="#" class="btn btn-outline-secondary d-none" download="{{ config('greeting_card.download_name') }}.jpg">
                                         <i class="fa-solid fa-file-arrow-down"></i> এখানেই ডাউনলোডের চেষ্টা করুন
                                     </a>
                                 </div>
@@ -615,7 +617,6 @@
                     });
                 }
 
-                const safeName = () => (nameEl.value.trim() || 'card').replace(/[\\/:*?"<>|\s]+/g, '-').slice(0, 40);
                 const fail = () => showError('কার্ড তৈরি করা যায়নি, পেজটি রিফ্রেশ করে আবার চেষ্টা করুন।');
 
                 // ---- Normal browser: save the PNG directly ----
@@ -626,7 +627,7 @@
                     trackEvent('download');
                     const a = document.createElement('a');
                     a.href = URL.createObjectURL(blob);
-                    a.download = `greeting-card-${safeName()}.png`;
+                    a.download = `${CFG.fileName}.png`;
                     document.body.appendChild(a);
                     a.click();
                     a.remove();
@@ -721,7 +722,7 @@
                         if (!blob) return fail();
                         shareCache = {
                             version: renderVersion,
-                            file: new File([blob], `greeting-card-${safeName()}.png`, { type: 'image/png' }),
+                            file: new File([blob], `${CFG.fileName}.png`, { type: 'image/png' }),
                         };
                     }
                     try {

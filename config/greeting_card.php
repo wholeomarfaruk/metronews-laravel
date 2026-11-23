@@ -1,6 +1,9 @@
 <?php
 
 return [
+    // File name for every downloaded/shared card (".png" or ".jpg" is added automatically).
+    'download_name' => 'greetings-card-metronews.com.bd',
+
     // Fonts selectable for the name on the greeting card. They are self-hosted in
     // public/fonts/greeting-card/{slug}.css — after adding or changing a font here, run:
     //   php artisan greeting-card:fonts
