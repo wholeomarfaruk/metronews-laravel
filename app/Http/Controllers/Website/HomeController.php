@@ -241,8 +241,8 @@ class HomeController extends Controller
         return response()->json([
             // Opened in the phone's real browser: shows the card with download + share buttons
             'page_url' => route('greeting.card.saved', ['token' => $token]),
-            'view_url' => route('greeting.card.file', ['name' => $name]),
-            'download_url' => route('greeting.card.file', ['name' => $name, 'download' => 1]),
+            'view_url' => route('greeting.card.image', ['token' => $token]),
+            'download_url' => route('greeting.card.download', ['token' => $token]),
         ]);
     }
 
@@ -256,8 +256,8 @@ class HomeController extends Controller
         return response()
             ->view('website.greeting-card.saved', [
                 'available' => $available,
-                'viewUrl' => route('greeting.card.file', ['name' => $token . '.jpg']),
-                'downloadUrl' => route('greeting.card.file', ['name' => $token . '.jpg', 'download' => 1]),
+                'viewUrl' => route('greeting.card.image', ['token' => $token]),
+                'downloadUrl' => route('greeting.card.download', ['token' => $token]),
                 'cardPageUrl' => route('greeting.card'),
                 'inApp' => GreetingCardEvent::isInAppBrowser($ua),
                 'isAndroid' => stripos($ua, 'Android') !== false,
@@ -265,9 +265,26 @@ class HomeController extends Controller
             ->header('X-Robots-Tag', 'noindex, nofollow');
     }
 
-    public function greetingCardFile(Request $request, string $name)
+    // The card image, shown inline (long-press "Save image" works on it).
+    public function greetingCardImage(string $token)
     {
-        $path = $this->greetingCardFileDir() . DIRECTORY_SEPARATOR . $name;
+        return $this->serveGreetingCard($token, false);
+    }
+
+    // The same image as a file download (Content-Disposition: attachment).
+    public function greetingCardDownload(string $token)
+    {
+        return $this->serveGreetingCard($token, true);
+    }
+
+    /**
+     * The URLs deliberately have no ".jpg" and send no-store: the live site sits behind a CDN
+     * (Hostinger hcdn) that caches *.jpg URLs as static files, which served the cached inline
+     * image for the download link too, so the browser showed the picture instead of downloading.
+     */
+    private function serveGreetingCard(string $token, bool $download)
+    {
+        $path = $this->greetingCardFileDir() . DIRECTORY_SEPARATOR . $token . '.jpg';
         if (!is_file($path) || filemtime($path) < time() - self::GREETING_CARD_FILE_TTL) {
             abort(404);
         }
@@ -276,12 +293,16 @@ class HomeController extends Controller
             'Content-Type' => 'image/jpeg',
             'X-Content-Type-Options' => 'nosniff',
             'X-Robots-Tag' => 'noindex, nofollow',
-            'Cache-Control' => 'private, max-age=3600',
+            'CDN-Cache-Control' => 'no-store',
         ];
 
-        return $request->boolean('download')
+        $response = $download
             ? response()->download($path, 'greeting-card.jpg', $headers)
             : response()->file($path, $headers);
+        // Set after creation: BinaryFileResponse marks itself "public" in its constructor.
+        $response->headers->set('Cache-Control', 'no-store, private, max-age=0');
+
+        return $response;
     }
 
     // Stats must never break the page (e.g. migration not run yet), so failures are only logged.

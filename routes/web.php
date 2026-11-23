@@ -170,9 +170,13 @@ Route::post('/greeting-card/downloaded', [HomeController::class, 'greetingCardDo
 Route::post('/greeting-card/file', [HomeController::class, 'greetingCardStore'])
     ->middleware('throttle:greeting-card-file')
     ->name('greeting.card.file.store');
-Route::get('/greeting-card/file/{name}', [HomeController::class, 'greetingCardFile'])
-    ->where('name', '[A-Za-z0-9]{40}\.jpg')
-    ->name('greeting.card.file');
+// No ".jpg" in these URLs on purpose: the CDN caches *.jpg as static files (see HomeController)
+Route::get('/greeting-card/image/{token}', [HomeController::class, 'greetingCardImage'])
+    ->where('token', '[A-Za-z0-9]{40}')
+    ->name('greeting.card.image');
+Route::get('/greeting-card/download/{token}', [HomeController::class, 'greetingCardDownload'])
+    ->where('token', '[A-Za-z0-9]{40}')
+    ->name('greeting.card.download');
 Route::get('/greeting-card/saved/{token}', [HomeController::class, 'greetingCardSaved'])
     ->where('token', '[A-Za-z0-9]{40}')
     ->name('greeting.card.saved');

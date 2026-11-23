@@ -81,20 +81,43 @@
                 const CFG = @json($jsConfig);
                 const csrf = document.querySelector('meta[name="csrf-token"]').content;
 
-                // Share sheet (WhatsApp, Facebook, Save to Photos…). The file is fetched up front
-                // so the tap shares immediately (share needs a fresh user tap).
+                const dlLink = document.getElementById('gcDownload');
+                const note = document.getElementById('gcAutoNote');
+
+                // The card is fetched once up front and used for both buttons:
+                // - Download saves it from memory (blob + <a download>), so the browser never navigates
+                //   away from this page — even if a CDN/proxy mishandles the server download URL.
+                // - Share needs the file ready, because it must run straight from the user's tap.
                 let file = null;
-                fetch(CFG.viewUrl)
+                const ready = fetch(CFG.viewUrl, { cache: 'no-store' })
                     .then((r) => r.ok ? r.blob() : null)
                     .then((blob) => {
-                        if (!blob) return;
-                        const f = new File([blob], 'greeting-card.jpg', { type: 'image/jpeg' });
-                        if (navigator.canShare && navigator.canShare({ files: [f] })) {
-                            file = f;
+                        if (!blob) return null;
+                        file = new File([blob], 'greeting-card.jpg', { type: 'image/jpeg' });
+                        if (navigator.canShare && navigator.canShare({ files: [file] })) {
                             document.getElementById('gcShare').classList.remove('d-none');
                         }
+                        return file;
                     })
-                    .catch(() => {});
+                    .catch(() => null);
+
+                function saveFromMemory() {
+                    if (!file) return false;
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(file);
+                    a.download = 'greeting-card.jpg';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+                    return true;
+                }
+
+                // In a real browser, save from memory; inside a social app (or before the file is loaded)
+                // fall back to the link's server download URL.
+                dlLink.addEventListener('click', (e) => {
+                    if (!CFG.inApp && saveFromMemory()) e.preventDefault();
+                });
 
                 document.getElementById('gcShare').addEventListener('click', () => {
                     if (!file) return;
@@ -117,9 +140,11 @@
                         sessionStorage.setItem(key, '1');
                     } catch (e) { /* storage blocked: still start once */ }
                     if (!started) {
-                        document.getElementById('gcAutoNote').textContent =
-                            'ডাউনলোড শুরু হয়েছে। না হলে "ডাউনলোড করুন" চাপুন।';
-                        setTimeout(() => { window.location.href = CFG.downloadUrl; }, 600);
+                        ready.then(() => {
+                            note.textContent = saveFromMemory()
+                                ? 'ডাউনলোড শুরু হয়েছে। ফোনের Downloads / Gallery-তে দেখুন। না হলে "ডাউনলোড করুন" চাপুন।'
+                                : 'কার্ড সেভ করতে "ডাউনলোড করুন" চাপুন।';
+                        });
                     }
                 }
             })();
