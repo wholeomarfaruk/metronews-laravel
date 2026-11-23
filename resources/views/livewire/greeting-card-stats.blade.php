@@ -47,7 +47,7 @@
             </div>
 
             {{-- Headline numbers --}}
-            <div class="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-5">
+            <div class="mb-6 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
                 <div class="{{ $tile }}">
                     <div class="{{ $tileLabel }}">Page visits</div>
                     <div class="{{ $tileValue }}">{{ $n($visits) }}</div>
@@ -64,12 +64,17 @@
                     <div class="{{ $tileSub }}">{{ $n($uniqueDownloaders) }} different people</div>
                 </div>
                 <div class="{{ $tile }}">
+                    <div class="{{ $tileLabel }}">Shares</div>
+                    <div class="{{ $tileValue }}">{{ $n($shares) }}</div>
+                    <div class="{{ $tileSub }}">Sent via the phone's share sheet</div>
+                </div>
+                <div class="{{ $tile }}">
                     <div class="{{ $tileLabel }}">Conversion</div>
                     <div class="{{ $tileValue }}">{{ $conversion }}%</div>
                     <div class="{{ $tileSub }}">Unique visitors who downloaded</div>
                 </div>
-                <div class="{{ $tile }} col-span-2 lg:col-span-1">
-                    <div class="{{ $tileLabel }}">From Facebook / Messenger app</div>
+                <div class="{{ $tile }}">
+                    <div class="{{ $tileLabel }}">From social apps (Facebook, Messenger…)</div>
                     <div class="{{ $tileValue }}">{{ $visits ? round($inAppVisits / $visits * 100) : 0 }}%</div>
                     <div class="{{ $tileSub }}">{{ $n($inAppVisits) }} of {{ $n($visits) }} visits</div>
                 </div>

@@ -45,6 +45,7 @@ class GreetingCardStats extends Component
         $uniqueVisitors = $base()->where('type', $visit)->distinct()->count('visitor_id');
         $downloads = $base()->where('type', $download)->count();
         $uniqueDownloaders = $base()->where('type', $download)->distinct()->count('visitor_id');
+        $shares = $base()->where('type', GreetingCardEvent::SHARE)->count();
         $inAppVisits = $base()->where('type', $visit)->where('in_app_browser', true)->count();
 
         // Share of unique visitors who downloaded at least one card.
@@ -95,6 +96,7 @@ class GreetingCardStats extends Component
             'uniqueVisitors' => $uniqueVisitors,
             'downloads' => $downloads,
             'uniqueDownloaders' => $uniqueDownloaders,
+            'shares' => $shares,
             'inAppVisits' => $inAppVisits,
             'conversion' => $conversion,
             'daily' => $daily,

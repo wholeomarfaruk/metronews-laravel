@@ -25,10 +25,13 @@ class AppServiceProvider extends ServiceProvider
     {
         // Greeting card download counter: limit per visitor (cookie), not per IP —
         // mobile carriers put many users behind one IP (CGNAT).
-        RateLimiter::for('greeting-card-download', function (Request $request) {
+        $byVisitor = function (Request $request): string {
             $visitor = $request->cookie(GreetingCardEvent::VISITOR_COOKIE);
 
-            return Limit::perMinute(20)->by(is_string($visitor) && $visitor !== '' ? 'v:' . $visitor : 'ip:' . $request->ip());
-        });
+            return is_string($visitor) && $visitor !== '' ? 'v:' . $visitor : 'ip:' . $request->ip();
+        };
+        RateLimiter::for('greeting-card-download', fn (Request $request) => Limit::perMinute(20)->by($byVisitor($request)));
+        // Card uploads for social app browsers (stored for 1 hour).
+        RateLimiter::for('greeting-card-file', fn (Request $request) => Limit::perMinute(10)->by($byVisitor($request)));
     }
 }

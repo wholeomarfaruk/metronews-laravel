@@ -26,6 +26,8 @@
         'siteHost' => $card['site_host'],
         // Download counter for the admin stats page
         'trackUrl' => route('greeting.card.downloaded'),
+        // Temporary card upload for social app browsers
+        'fileUrl' => route('greeting.card.file.store'),
         'csrf' => csrf_token(),
     ];
     $defaultSize = (int) $card['font_size'];
@@ -95,6 +97,19 @@
                 @endif
             </div>
 
+            {{-- Shown by JS inside Facebook/Messenger/other social app browsers --}}
+            <div id="gcInAppNotice" class="alert alert-info d-none d-flex flex-wrap align-items-center gap-2 small">
+                <span class="flex-grow-1">
+                    <i class="fa-solid fa-circle-info"></i>
+                    আপনি ফেসবুক/মেসেঞ্জার অ্যাপের ভেতর থেকে পেজটি খুলেছেন। সহজে ডাউনলোডের জন্য পেজটি
+                    <b id="gcInAppBrowserName">ব্রাউজারে</b> খুলুন।
+                    <span id="gcIosTip" class="d-none">উপরের <b>•••</b> মেনু থেকে <b>Open in browser / Safari</b> চাপুন।</span>
+                </span>
+                <a id="gcOpenChrome" href="#" class="btn btn-sm btn-primary d-none">
+                    <i class="fa-brands fa-chrome"></i> Chrome-এ খুলুন
+                </a>
+            </div>
+
                 <div class="row g-3">
                     {{-- Controls --}}
                     <div class="col-lg-5 order-2 order-lg-1">
@@ -105,7 +120,7 @@
                                 <label class="gc-drop d-block mb-0" id="gcDrop" for="gcFile">
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
                                     <div class="fw-semibold mt-1" id="gcDropText">ছবি নির্বাচন করুন বা এখানে টেনে আনুন</div>
-                                    <small class="text-muted">আপনার ছবি কোথাও আপলোড হয় না</small>
+                                    <small class="text-muted" id="gcPrivacyNote">আপনার ছবি কোথাও আপলোড হয় না</small>
                                 </label>
                                 <input type="file" id="gcFile" accept="image/*" class="d-none">
                             </div>
@@ -156,15 +171,28 @@
 
                             <hr>
 
-                            <button type="button" class="btn gc-btn-red btn-lg w-100" id="gcDownload" disabled>
-                                <i class="fa-solid fa-download"></i> ডাউনলোড করুন
-                            </button>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn gc-btn-red btn-lg" id="gcDownload" disabled>
+                                    <i class="fa-solid fa-download"></i> ডাউনলোড করুন
+                                </button>
+                                {{-- Shown by JS only where the browser can share image files --}}
+                                <button type="button" class="btn btn-outline-primary btn-lg d-none" id="gcShare" disabled>
+                                    <i class="fa-solid fa-share-nodes"></i> শেয়ার করুন
+                                </button>
+                            </div>
                             <div class="small text-danger mt-2 d-none" id="gcError"></div>
 
-                            {{-- Facebook/Messenger in-app browsers block downloads: show the image to long-press instead --}}
+                            {{-- Social app browsers (Facebook/Messenger…): the download is handed to the phone's
+                                 browser; these are the fallbacks if the app blocks that --}}
                             <div id="gcResult" class="d-none mt-3 text-center">
-                                <div class="alert alert-warning small py-2 mb-2">
-                                    <i class="fa-solid fa-hand-pointer"></i> ছবিটির উপর চেপে ধরে রাখুন, তারপর <b>Save / Download image</b> চাপুন।
+                                <div class="alert alert-warning small py-2 mb-2" id="gcResultMsg"></div>
+                                <div class="d-grid gap-2 mb-2">
+                                    <a id="gcResultOpen" href="#" class="btn gc-btn-red d-none">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i> ব্রাউজারে খুলে ডাউনলোড করুন
+                                    </a>
+                                    <a id="gcResultDownload" href="#" class="btn btn-outline-secondary d-none" download="greeting-card.jpg">
+                                        <i class="fa-solid fa-file-arrow-down"></i> এখানেই ডাউনলোডের চেষ্টা করুন
+                                    </a>
                                 </div>
                                 <img id="gcResultImg" class="img-fluid rounded border" alt="আপনার শুভেচ্ছা কার্ড">
                             </div>
@@ -362,7 +390,9 @@
                 }
 
                 let raf = 0;
+                let renderVersion = 0; // bumps on every change; the share cache uses it to know the card is stale
                 function render() {
+                    renderVersion++;
                     if (raf) return;
                     raf = requestAnimationFrame(() => {
                         raf = 0;
@@ -402,6 +432,7 @@
                     $('gcDropText').textContent = 'অন্য ছবি নির্বাচন করুন';
                     $('gcPhotoControls').setAttribute('aria-disabled', 'false');
                     dlBtn.disabled = false;
+                    $('gcShare').disabled = false;
                     canvas.classList.add('has-photo');
                 }
 
@@ -502,60 +533,225 @@
                     setZoom(state.zoom * (e.deltaY < 0 ? 1.06 : 1 / 1.06), p.x, p.y);
                 }, { passive: false });
 
-                // ---------- Download ----------
-                // Facebook / Messenger / Instagram in-app browsers ignore <a download>.
-                const IN_APP_BROWSER = /FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram|Line\//i.test(navigator.userAgent);
+                // ---------- Download & share ----------
+                // Social app browsers (Facebook, Messenger, Instagram, TikTok…) ignore <a download>
+                // and can't save blob: images. Keep in sync with GreetingCardEvent::isInAppBrowser().
+                const UA = navigator.userAgent;
+                const IS_ANDROID = /Android/i.test(UA);
+                const IS_IOS = /iPhone|iPad|iPod/i.test(UA);
+                // Big social apps whose browsers are known to hand intent:// / x-safari links to the OS.
+                const KNOWN_SOCIAL_APP = /FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram|Line\/|Twitter|LinkedInApp|musical_ly|BytedanceWebview|Snapchat|Pinterest/i.test(UA);
+                const IN_APP_BROWSER = KNOWN_SOCIAL_APP
+                    || (IS_ANDROID && UA.includes('; wv)'))
+                    || (IS_IOS && !UA.includes('Safari/'));
+                const SHARE_SUPPORTED = (() => {
+                    try {
+                        return !!(navigator.canShare && navigator.canShare({ files: [new File(['x'], 'x.png', { type: 'image/png' })] }));
+                    } catch (e) { return false; }
+                })();
+                const shareBtn = $('gcShare');
                 let resultUrl = null;
 
-                // Count the download for admin stats. Fire-and-forget: never blocks or breaks the download.
-                function trackDownload() {
+                /**
+                 * URL that asks a social app's browser to open `url` in the phone's real browser.
+                 * Android: intent:// to Chrome, falling back to the URL itself (works in most app browsers).
+                 * iOS: x-safari-https:// (some Facebook/Instagram versions block it, so callers keep a fallback).
+                 */
+                function externalBrowserUrl(url) {
+                    const u = new URL(url, location.href);
+                    if (IS_ANDROID) {
+                        return `intent://${u.host}${u.pathname}${u.search}#Intent;scheme=${u.protocol.replace(':', '')};`
+                            + `package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(u.href)};end`;
+                    }
+                    return IS_IOS ? 'x-safari-' + u.href : u.href;
+                }
+
+                // Tell in-app users up front that a real browser works best (before they make the card).
+                if (IN_APP_BROWSER) {
+                    $('gcInAppNotice').classList.remove('d-none');
+                    $('gcPrivacyNote').textContent = 'অ্যাপে ডাউনলোডের জন্য তৈরি কার্ডটি ১ ঘণ্টা সার্ভারে থাকে, তারপর মুছে যায়';
+                    const open = $('gcOpenChrome');
+                    if (IS_ANDROID) {
+                        open.href = externalBrowserUrl(location.href);
+                        open.classList.remove('d-none');
+                        $('gcInAppBrowserName').textContent = 'Chrome-এ';
+                    } else if (IS_IOS) {
+                        open.href = externalBrowserUrl(location.href);
+                        open.innerHTML = '<i class="fa-brands fa-safari"></i> Safari-তে খুলুন';
+                        open.classList.remove('d-none');
+                        $('gcIosTip').classList.remove('d-none');
+                        $('gcInAppBrowserName').textContent = 'Safari-তে';
+                    }
+                }
+                if (SHARE_SUPPORTED) shareBtn.classList.remove('d-none');
+
+                // Admin stats: 'download' or 'share'. Fire-and-forget: never blocks or breaks the user's action.
+                function trackEvent(type) {
                     try {
                         fetch(CFG.trackUrl, {
                             method: 'POST',
                             headers: { 'X-CSRF-TOKEN': CFG.csrf, 'Accept': 'application/json' },
                             credentials: 'same-origin',
                             keepalive: true,
+                            body: new URLSearchParams({ type }),
                         }).catch(() => {});
                     } catch (e) { /* ignore */ }
                 }
 
-                dlBtn.addEventListener('click', async () => {
-                    showError('');
+                // Draw synchronously (with the name font loaded) so an export never misses a pending frame.
+                async function renderNow() {
                     await loadNameFont();
-                    // Draw synchronously so the export never misses a pending frame.
                     if (raf) { cancelAnimationFrame(raf); raf = 0; }
                     ctx.clearRect(0, 0, W, H);
                     drawPhoto();
                     drawFrame();
                     drawName();
+                }
 
-                    const safe = (nameEl.value.trim() || 'card').replace(/[\\/:*?"<>|\s]+/g, '-').slice(0, 40);
-                    const fail = () => showError('ডাউনলোড করা যায়নি, পেজটি রিফ্রেশ করে আবার চেষ্টা করুন।');
+                // null if the canvas can't be exported (e.g. template served from another domain without CORS)
+                function cardBlob(type, quality) {
+                    return new Promise((resolve) => {
+                        try { canvas.toBlob(resolve, type, quality); } catch (e) { resolve(null); }
+                    });
+                }
+
+                const safeName = () => (nameEl.value.trim() || 'card').replace(/[\\/:*?"<>|\s]+/g, '-').slice(0, 40);
+                const fail = () => showError('কার্ড তৈরি করা যায়নি, পেজটি রিফ্রেশ করে আবার চেষ্টা করুন।');
+
+                // ---- Normal browser: save the PNG directly ----
+                async function directDownload() {
+                    await renderNow();
+                    const blob = await cardBlob('image/png');
+                    if (!blob) return fail();
+                    trackEvent('download');
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    a.download = `greeting-card-${safeName()}.png`;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+                }
+
+                // ---- Social app browser: upload, then hand the download to the phone's real browser ----
+                async function uploadCard(blob) {
+                    const body = new FormData();
+                    body.append('card', blob, 'card.jpg');
+                    const res = await fetch(CFG.fileUrl, {
+                        method: 'POST',
+                        headers: { 'X-CSRF-TOKEN': CFG.csrf, 'Accept': 'application/json' },
+                        credentials: 'same-origin',
+                        body,
+                    });
+                    if (!res.ok) throw new Error('upload ' + res.status);
+                    return res.json(); // { page_url, view_url, download_url }
+                }
+
+                async function inAppDownload() {
+                    const box = $('gcResult'), img = $('gcResultImg'), msg = $('gcResultMsg'),
+                        dl = $('gcResultDownload'), openExt = $('gcResultOpen');
+                    const setMsg = (html) => { msg.innerHTML = html; };
+
+                    dl.classList.add('d-none');
+                    openExt.classList.add('d-none');
+                    setMsg('<i class="fa-solid fa-spinner fa-spin"></i> কার্ড প্রস্তুত হচ্ছে…');
+                    box.classList.remove('d-none');
+
+                    await renderNow();
+                    // JPEG keeps the upload small (≈0.5 MB vs 2–4 MB PNG) for server upload limits.
+                    const blob = await cardBlob('image/jpeg', 0.92);
+                    if (!blob) { box.classList.add('d-none'); return fail(); }
+
+                    if (resultUrl) URL.revokeObjectURL(resultUrl);
+                    resultUrl = URL.createObjectURL(blob);
+                    img.src = resultUrl; // instant preview while uploading
+                    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    let data;
                     try {
-                        canvas.toBlob((blob) => {
-                            if (!blob) return fail();
-                            trackDownload();
-                            if (IN_APP_BROWSER) {
-                                const img = $('gcResultImg');
-                                if (resultUrl) URL.revokeObjectURL(resultUrl);
-                                resultUrl = URL.createObjectURL(blob);
-                                img.src = resultUrl;
-                                $('gcResult').classList.remove('d-none');
-                                $('gcResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                return;
-                            }
-                            const a = document.createElement('a');
-                            a.href = URL.createObjectURL(blob);
-                            a.download = `greeting-card-${safe}.png`;
-                            document.body.appendChild(a);
-                            a.click();
-                            a.remove();
-                            setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-                        }, 'image/png');
+                        data = await uploadCard(blob);
                     } catch (e) {
-                        fail(); // e.g. template served from another domain without CORS
+                        setMsg('কার্ডটি প্রস্তুত করা যায়নি। ইন্টারনেট সংযোগ দেখে আবার "ডাউনলোড করুন" চাপুন, '
+                            + 'অথবা উপরের নির্দেশনা অনুযায়ী পেজটি ব্রাউজারে খুলুন।');
+                        return;
                     }
-                });
+
+                    trackEvent('download'); // counted only once the card is really available
+                    img.src = data.view_url; // real URL: long-press "Save image" works
+                    dl.href = data.download_url;
+                    dl.classList.remove('d-none');
+                    const ext = externalBrowserUrl(data.page_url);
+                    openExt.href = ext;
+                    openExt.classList.remove('d-none');
+
+                    const manualMsg = 'নিচের <b>"ব্রাউজারে খুলে ডাউনলোড করুন"</b> চাপুন, '
+                        + 'অথবা ছবির উপর <b>চেপে ধরে</b> <b>Download / Save image</b> চাপুন।'
+                        + (IS_IOS ? ' iPhone-এ উপরের <b>•••</b> মেনু → <b>Open in external browser</b> চাপলেও হবে।' : '');
+
+                    // Only auto-redirect in the big social apps: an unknown app's WebView may not understand
+                    // intent:// and would replace this page with an error page (losing the card).
+                    if (!KNOWN_SOCIAL_APP) {
+                        setMsg('<i class="fa-solid fa-circle-check"></i> কার্ড প্রস্তুত! ' + manualMsg);
+                        return;
+                    }
+
+                    // Try to open the card page in the external browser automatically. If the app blocks it,
+                    // this page stays visible, so after a moment show the manual options instead.
+                    setMsg('<i class="fa-solid fa-spinner fa-spin"></i> ডাউনলোডের জন্য ব্রাউজার খোলা হচ্ছে…');
+                    let left = false;
+                    const onVisibility = () => { if (document.hidden) left = true; };
+                    document.addEventListener('visibilitychange', onVisibility);
+                    window.location.href = ext;
+                    await new Promise((resolve) => setTimeout(resolve, 1500));
+                    document.removeEventListener('visibilitychange', onVisibility);
+                    setMsg(left
+                        ? '<i class="fa-solid fa-circle-check"></i> কার্ডটি ব্রাউজারে খোলা হয়েছে, সেখান থেকে ডাউনলোড বা শেয়ার করুন। '
+                            + 'কোনো সমস্যা হলে নিচের অপশনগুলো ব্যবহার করুন।'
+                        : 'স্বয়ংক্রিয়ভাবে ব্রাউজার খোলা যায়নি। ' + manualMsg);
+                }
+
+                // ---- Share sheet (WhatsApp, Facebook, Save to Photos…) where supported ----
+                // Preparing the file can outlast the tap's "user activation"; then the share is refused
+                // with NotAllowedError, so the file is cached and a second tap shares instantly.
+                let shareCache = null;
+                async function shareCard() {
+                    if (!shareCache || shareCache.version !== renderVersion) {
+                        await renderNow();
+                        const blob = await cardBlob('image/png');
+                        if (!blob) return fail();
+                        shareCache = {
+                            version: renderVersion,
+                            file: new File([blob], `greeting-card-${safeName()}.png`, { type: 'image/png' }),
+                        };
+                    }
+                    try {
+                        await navigator.share({ files: [shareCache.file], title: document.title });
+                        trackEvent('share');
+                    } catch (e) {
+                        if (e && e.name === 'NotAllowedError') {
+                            showError('কার্ড প্রস্তুত হয়েছে, শেয়ার করতে আবার "শেয়ার করুন" চাপুন।');
+                        } // AbortError = the user closed the share sheet
+                    }
+                }
+
+                // One action at a time: repeated taps during an upload/redirect would start duplicates.
+                let busy = false;
+                async function runExclusive(action) {
+                    if (busy) return;
+                    busy = true;
+                    dlBtn.disabled = shareBtn.disabled = true;
+                    showError('');
+                    try {
+                        await action();
+                    } catch (e) {
+                        fail();
+                    } finally {
+                        busy = false;
+                        dlBtn.disabled = shareBtn.disabled = !state.img;
+                    }
+                }
+                dlBtn.addEventListener('click', () => runExclusive(IN_APP_BROWSER ? inAppDownload : directDownload));
+                shareBtn.addEventListener('click', () => runExclusive(shareCard));
 
                 // ---------- Init ----------
                 render();

@@ -166,4 +166,14 @@ Route::get('/greeting-card', [HomeController::class, 'greetingCard'])->name('gre
 Route::post('/greeting-card/downloaded', [HomeController::class, 'greetingCardDownloaded'])
     ->middleware('throttle:greeting-card-download')
     ->name('greeting.card.downloaded');
+// Temporary card file for social app browsers (Facebook/Messenger) that can't save blob: images
+Route::post('/greeting-card/file', [HomeController::class, 'greetingCardStore'])
+    ->middleware('throttle:greeting-card-file')
+    ->name('greeting.card.file.store');
+Route::get('/greeting-card/file/{name}', [HomeController::class, 'greetingCardFile'])
+    ->where('name', '[A-Za-z0-9]{40}\.jpg')
+    ->name('greeting.card.file');
+Route::get('/greeting-card/saved/{token}', [HomeController::class, 'greetingCardSaved'])
+    ->where('token', '[A-Za-z0-9]{40}')
+    ->name('greeting.card.saved');
 

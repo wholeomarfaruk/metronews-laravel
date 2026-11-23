@@ -8,6 +8,8 @@ use App\Models\GreetingCardEvent;
 use App\Models\Post;
 use App\Models\VideoPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 use function Laravel\Prompts\error;
 use function Livewire\Volt\js;
@@ -189,12 +191,97 @@ class HomeController extends Controller
         return view('website.greeting-card.index', compact('card'));
     }
 
-    // Called by the greeting card page (fetch) after a card image is generated.
-    public function greetingCardDownloaded()
+    // Called by the greeting card page (fetch) after a card is downloaded or shared.
+    public function greetingCardDownloaded(Request $request)
     {
-        $this->recordGreetingCardEvent(GreetingCardEvent::DOWNLOAD);
+        $type = $request->input('type') === GreetingCardEvent::SHARE
+            ? GreetingCardEvent::SHARE
+            : GreetingCardEvent::DOWNLOAD;
+        $this->recordGreetingCardEvent($type);
 
         return response()->noContent();
+    }
+
+    /**
+     * Social app browsers (Facebook, Messenger…) can't save a blob: image, so the page uploads
+     * the finished card here and gets a real URL to long-press / download. Only used inside
+     * those apps; files are deleted after GREETING_CARD_FILE_TTL seconds.
+     */
+    private const GREETING_CARD_FILE_TTL = 3600;
+
+    private function greetingCardFileDir(): string
+    {
+        return storage_path('app/greeting-cards');
+    }
+
+    public function greetingCardStore(Request $request)
+    {
+        $request->validate(['card' => 'required|file|mimes:jpg,jpeg|max:8192']);
+
+        $upload = $request->file('card');
+        $info = @getimagesize($upload->getRealPath());
+        if (!$info || $info[2] !== IMAGETYPE_JPEG || $info[0] > 4000 || $info[1] > 4000) {
+            return response()->json(['message' => 'Invalid image.'], 422);
+        }
+
+        $dir = $this->greetingCardFileDir();
+        File::ensureDirectoryExists($dir);
+
+        // Lazy cleanup instead of a cron job: drop cards older than the TTL.
+        foreach (File::files($dir) as $old) {
+            if ($old->getMTime() < time() - self::GREETING_CARD_FILE_TTL) {
+                @unlink($old->getPathname());
+            }
+        }
+
+        $token = Str::random(40);
+        $name = $token . '.jpg';
+        $upload->move($dir, $name);
+
+        return response()->json([
+            // Opened in the phone's real browser: shows the card with download + share buttons
+            'page_url' => route('greeting.card.saved', ['token' => $token]),
+            'view_url' => route('greeting.card.file', ['name' => $name]),
+            'download_url' => route('greeting.card.file', ['name' => $name, 'download' => 1]),
+        ]);
+    }
+
+    // "Your card" page that the social app hands over to Chrome/Safari.
+    public function greetingCardSaved(Request $request, string $token)
+    {
+        $path = $this->greetingCardFileDir() . DIRECTORY_SEPARATOR . $token . '.jpg';
+        $available = is_file($path) && filemtime($path) >= time() - self::GREETING_CARD_FILE_TTL;
+        $ua = (string) $request->userAgent();
+
+        return response()
+            ->view('website.greeting-card.saved', [
+                'available' => $available,
+                'viewUrl' => route('greeting.card.file', ['name' => $token . '.jpg']),
+                'downloadUrl' => route('greeting.card.file', ['name' => $token . '.jpg', 'download' => 1]),
+                'cardPageUrl' => route('greeting.card'),
+                'inApp' => GreetingCardEvent::isInAppBrowser($ua),
+                'isAndroid' => stripos($ua, 'Android') !== false,
+            ], $available ? 200 : 404)
+            ->header('X-Robots-Tag', 'noindex, nofollow');
+    }
+
+    public function greetingCardFile(Request $request, string $name)
+    {
+        $path = $this->greetingCardFileDir() . DIRECTORY_SEPARATOR . $name;
+        if (!is_file($path) || filemtime($path) < time() - self::GREETING_CARD_FILE_TTL) {
+            abort(404);
+        }
+
+        $headers = [
+            'Content-Type' => 'image/jpeg',
+            'X-Content-Type-Options' => 'nosniff',
+            'X-Robots-Tag' => 'noindex, nofollow',
+            'Cache-Control' => 'private, max-age=3600',
+        ];
+
+        return $request->boolean('download')
+            ? response()->download($path, 'greeting-card.jpg', $headers)
+            : response()->file($path, $headers);
     }
 
     // Stats must never break the page (e.g. migration not run yet), so failures are only logged.
