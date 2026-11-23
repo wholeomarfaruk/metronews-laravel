@@ -24,6 +24,9 @@
         'logoUrl' => asset('website/img/logo/logo-transparent.png'),
         'siteTitle' => $card['site_title'],
         'siteHost' => $card['site_host'],
+        // Download counter for the admin stats page
+        'trackUrl' => route('greeting.card.downloaded'),
+        'csrf' => csrf_token(),
     ];
     $defaultSize = (int) $card['font_size'];
 @endphp
@@ -503,6 +506,19 @@
                 // Facebook / Messenger / Instagram in-app browsers ignore <a download>.
                 const IN_APP_BROWSER = /FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram|Line\//i.test(navigator.userAgent);
                 let resultUrl = null;
+
+                // Count the download for admin stats. Fire-and-forget: never blocks or breaks the download.
+                function trackDownload() {
+                    try {
+                        fetch(CFG.trackUrl, {
+                            method: 'POST',
+                            headers: { 'X-CSRF-TOKEN': CFG.csrf, 'Accept': 'application/json' },
+                            credentials: 'same-origin',
+                            keepalive: true,
+                        }).catch(() => {});
+                    } catch (e) { /* ignore */ }
+                }
+
                 dlBtn.addEventListener('click', async () => {
                     showError('');
                     await loadNameFont();
@@ -518,6 +534,7 @@
                     try {
                         canvas.toBlob((blob) => {
                             if (!blob) return fail();
+                            trackDownload();
                             if (IN_APP_BROWSER) {
                                 const img = $('gcResultImg');
                                 if (resultUrl) URL.revokeObjectURL(resultUrl);

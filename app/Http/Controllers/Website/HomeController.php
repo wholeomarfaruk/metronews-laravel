@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\GreetingCardEvent;
 use App\Models\Post;
 use App\Models\VideoPost;
 use Illuminate\Http\Request;
@@ -183,6 +184,26 @@ class HomeController extends Controller
         $card['site_title'] = setting('general.site_title', 'Metro News');
         $card['site_host'] = request()->getHost();
 
+        $this->recordGreetingCardEvent(GreetingCardEvent::VISIT);
+
         return view('website.greeting-card.index', compact('card'));
+    }
+
+    // Called by the greeting card page (fetch) after a card image is generated.
+    public function greetingCardDownloaded()
+    {
+        $this->recordGreetingCardEvent(GreetingCardEvent::DOWNLOAD);
+
+        return response()->noContent();
+    }
+
+    // Stats must never break the page (e.g. migration not run yet), so failures are only logged.
+    private function recordGreetingCardEvent(string $type): void
+    {
+        try {
+            GreetingCardEvent::record(request(), $type);
+        } catch (\Throwable $e) {
+            report($e);
+        }
     }
 }

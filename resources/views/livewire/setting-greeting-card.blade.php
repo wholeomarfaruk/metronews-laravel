@@ -32,6 +32,8 @@
                     Public page enabled
                 </label>
                 <div class="flex items-center gap-3">
+                    <a href="{{ route('admin.settings.greeting-card.stats') }}"
+                        class="text-sm text-blue-600 hover:underline">📊 Visits &amp; downloads</a>
                     <a href="{{ route('greeting.card') }}" target="_blank"
                         class="text-sm text-blue-600 hover:underline">View public page ↗</a>
                     <button type="submit" wire:loading.attr="disabled"
